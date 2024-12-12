@@ -1,0 +1,53 @@
+.navBar {
+    height: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    .navBar_center {
+        width: 80%;
+        display: flex;
+        justify-content: space-between;
+        align-self: center;
+        .navBar_items {
+            width: 30%;
+            display: flex;
+            justify-content: space-between;
+        }
+        button {
+            width: 105px;
+            height: 35px;
+            background: none;
+            font-size: 1.2rem;
+            border: none;
+            color: rgba(250, 250, 250, 0.5);
+            &:hover {
+                color: white;
+                cursor: pointer;
+            }
+        }
+        .login {
+            display: flex;
+            width: 20%;
+            button {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+            }
+            button {
+                color: white;
+            }
+            img {
+                width: 30px;
+                height: 30px;
+                filter: invert(100%);
+            }
+            .dropdownMenu {
+                top: 70px;
+
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+            }
+        }
+    }
+}

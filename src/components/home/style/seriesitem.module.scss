@@ -1,0 +1,27 @@
+.series {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    .series_center {
+        width: 80%;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+        .series_item {
+            position: relative;
+            .series_item_center {
+                height: 250px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                img {
+                    width: 100%;
+                }
+                p {
+                    font-size: 14px;
+                    color: rgba(255, 255, 255, 0.7);
+                }
+            }
+        }
+    }
+}

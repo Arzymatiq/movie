@@ -1,0 +1,1003 @@
+{
+    "movies": [
+        {
+            "id": 1,
+            "title": "Harry Potter",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfILbk8qd5KHYWXTX1H7BhdKkmraxPIjINbA&s",
+            "image_desc": "https://static1.srcdn.com/wordpress/wp-content/uploads/2016/10/Daniel-Radcliffe-as-Harry-Potter.jpg",
+            "grade": 8.9,
+            "date": {
+                "day": 16,
+                "month": "November",
+                "year": 2001
+            },
+            "author": "J. K. Rowling",
+            "description": "How he's described in the books… Harry had a thin face, knobbly knees, black hair and bright-green eyes. He wore round glasses held together with a lot of Sellotape because of all the times Dudley had punched him on the nose.",
+            "Age_limit": 13,
+            "time": 109
+        },
+        {
+            "id": 2,
+            "title": "The Lord of the Rings: The Fellowship of the Ring",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwjvtARVQAFZvjgby4i1ev7I2h0OgHcG8YoQ&s",
+            "image_desc": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfk0Gqmfn3VC9y1hTsupy_vrPpJUhHEi9FJA&s",
+
+            "grade": 8.8,
+            "date": {
+                "day": 19,
+                "month": "December",
+                "year": 2001
+            },
+            "author": "J. R. R. Tolkien",
+            "description": "An epic journey to destroy the One Ring and save Middle-earth from the Dark Lord Sauron.",
+            "Age_limit": 12,
+            "time": 178
+        },
+        {
+            "id": 3,
+            "title": "Inception",
+            "image": "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_FMjpg_UX1000_.jpg",
+            "image_desc": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJDkxr-5wd_XHZuxV5TibOcBUy2cx4Itwikw&s",
+
+            "grade": 8.8,
+            "date": {
+                "day": 16,
+                "month": "July",
+                "year": 2010
+            },
+            "author": "Christopher Nolan",
+            "description": "A skilled thief is offered a chance to erase his criminal record by completing an almost impossible task: inception.",
+            "Age_limit": 13,
+            "time": 148
+        },
+        {
+            "id": 4,
+            "title": "The Dark Knight",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhi1arS70w_kXQTF-GctH3Vz_vXSLK3ZxHVQ&s",
+            "image_desc": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNHwu-1MXf5Pzn6rIjcPu3yd5UXozhZJvU4A&s",
+            "grade": 9.0,
+            "date": {
+                "day": 18,
+                "month": "July",
+                "year": 2008
+            },
+            "author": "Christopher Nolan",
+            "description": "Batman faces his toughest foe, the Joker, who wants to prove that anyone can become like him under the right circumstances.",
+            "Age_limit": 13,
+            "time": 152
+        },
+        {
+            "id": 5,
+            "title": "Avatar",
+            "image_desc": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_gaxAkYYDw8UfNleSC2Viswv3xSmOa4bIAQ&s",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYK12l6BER5Omfzlc-nopGmTzO1udleH_E3g&s",
+            "grade": 7.8,
+            "date": {
+                "day": 18,
+                "month": "December",
+                "year": 2009
+            },
+            "author": "James Cameron",
+            "description": "A paraplegic Marine is sent to Pandora on a unique mission but becomes torn between following orders and protecting an alien civilization.",
+            "Age_limit": 13,
+            "time": 162
+        },
+        {
+            "id": 6,
+            "title": "Titanic",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMzsZYpklmQ-dGmLsdqTfiqRTqSA2YRbHPSQ&s",
+            "image_desc": "https://static.okko.tv/images/v4/ea7cd30c-e03d-4e99-bf65-5a84c04c4e65?scale=1&quality=80",
+            "grade": 7.9,
+            "date": {
+                "day": 19,
+                "month": "December",
+                "year": 1997
+            },
+            "author": "James Cameron",
+            "description": "A young aristocrat falls in love with a kind but poor artist aboard the ill-fated R.M.S. Titanic.",
+            "Age_limit": 13,
+            "time": 195
+        },
+        {
+            "id": 7,
+            "title": "The Matrix",
+            "image_desc": "https://www.syfy.com/sites/syfy/files/2021/03/the-matrix.jpeg",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQscJz2jJQ2Q4BJHx_WBSYqCVidQDu_Ir8U5w&s",
+            "grade": 8.7,
+            "date": {
+                "day": 31,
+                "month": "March",
+                "year": 1999
+            },
+            "author": "Lana Wachowski, Lilly Wachowski",
+            "description": "A computer hacker learns about the true nature of reality and his role in the war against its controllers.",
+            "Age_limit": 16,
+            "time": 136
+        },
+        {
+            "id": 8,
+            "title": "Interstellar",
+            "image_desc": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVVazaukDPzzzl1gMZ4_0EVjGXVMlqk5VpaA&s",
+            "image": "https://m.media-amazon.com/images/M/MV5BYzdjMDAxZGItMjI2My00ODA1LTlkNzItOWFjMDU5ZDJlYWY3XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+            "grade": 8.6,
+            "date": {
+                "day": 7,
+                "month": "November",
+                "year": 2014
+            },
+            "author": "Christopher Nolan",
+            "description": "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
+            "Age_limit": 15,
+            "time": 169
+        },
+        {
+            "id": 9,
+            "title": "The Avengers",
+            "image_desc": "https://delta-game.ru/wp-content/uploads/2020/08/Marvels-Avengers.png",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3SGI0tAFu9WIM7wh6fCSUPlPHootZDtB3nA&s",
+            "grade": 8.0,
+            "date": {
+                "day": 4,
+                "month": "May",
+                "year": 2012
+            },
+            "author": "Joss Whedon",
+            "description": "Earth's mightiest heroes must come together to stop the mischievous Loki and his alien army from enslaving humanity.",
+            "Age_limit": 13,
+            "time": 143
+        },
+        {
+            "id": 10,
+            "title": "Joker",
+            "image_desc": "https://m.media-amazon.com/images/M/MV5BMGQ1ZGZmNTAtM2MyYi00NmZhLTkwYmYtNTNlZDRhMzU2ZTgwXkEyXkFqcGdeQW1yb3NzZXI@._V1_.jpg",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVOKqXXO4f84RFy12H_tdAA7I0CV5sNvO5eg&s",
+            "grade": 8.4,
+            "date": {
+                "day": 4,
+                "month": "October",
+                "year": 2019
+            },
+            "author": "Todd Phillips",
+            "description": "In Gotham City's fractured society, a mentally troubled comedian embarks on a downward spiral that leads to the creation of an iconic villain.",
+            "Age_limit": 18,
+            "time": 122
+        },
+        {
+            "id": 11,
+            "title": "Toy Story",
+            "image_desc": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMvaVMaWNc4MXpYZodjZc4isG38sPt15OdsQ&s",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6zsEdlqZq9A2VOZLNot0aqWTUp0bV_9fDKA&s",
+            "grade": 8.3,
+            "date": {
+                "day": 22,
+                "month": "November",
+                "year": 1995
+            },
+            "author": "John Lasseter",
+            "description": "A cowboy doll is profoundly threatened and jealous when a new spaceman figure supplants him as top toy in a boy's room.",
+            "Age_limit": 0,
+            "time": 81
+        },
+        {
+            "id": 12,
+            "title": "Forrest Gump",
+            "image_desc": "https://static1.srcdn.com/wordpress/wp-content/uploads/2024/05/forrest-gump-running-1.jpg",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSo0BdndC0OBvVL8nUmsvcTGbbjb2Ulbyh64g&s",
+            "grade": 8.8,
+            "date": {
+                "day": 6,
+                "month": "July",
+                "year": 1994
+            },
+            "author": "Robert Zemeckis",
+            "description": "The presidencies of Kennedy and Johnson, the events of Vietnam, Watergate, and other history unfold through the perspective of an Alabama man with an IQ of 75.",
+            "Age_limit": 13,
+            "time": 142
+        },
+        {
+            "id": 13,
+            "title": "Gladiator",
+            "image_desc": "https://static1.srcdn.com/wordpress/wp-content/uploads/2024/10/maximus-dream-family-gladiator.jpg",
+            "image": "https://m.media-amazon.com/images/M/MV5BYWQ4YmNjYjEtOWE1Zi00Y2U4LWI4NTAtMTU0MjkxNWQ1ZmJiXkEyXkFqcGc@._V1_.jpg",
+            "grade": 8.5,
+            "date": {
+                "day": 5,
+                "month": "May",
+                "year": 2000
+            },
+            "author": "Ridley Scott",
+            "description": "A former Roman General sets out to exact vengeance against the corrupt emperor who murdered his family and sent him into slavery.",
+            "Age_limit": 16,
+            "time": 155
+        },
+        {
+            "id": 14,
+            "title": "Star Wars: Episode IV - A New Hope",
+            "image_desc": "https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/81A736C2B6CC7B7B4A3F2E2381E36542715DFC550F765F49BC0770898DE5F32B/scale?width=1200&aspectRatio=1.78&format=webp",
+            "image": "https://m.media-amazon.com/images/I/612h-jwI+EL._AC_UF1000,1000_QL80_.jpg",
+            "grade": 8.6,
+            "date": {
+                "day": 25,
+                "month": "May",
+                "year": 1977
+            },
+            "author": "George Lucas",
+            "description": "Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a Wookiee, and two droids to save the galaxy from the Empire's world-destroying battle station.",
+            "Age_limit": 12,
+            "time": 121
+        },
+        {
+            "id": 15,
+            "title": "The Lion King",
+            "image_desc": "https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/D3429E72F594CA84B8448FE5F8BDE1773505217A9541297CB1E85719EC8D686C/scale?width=1200&aspectRatio=1.78&format=webp",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3N7-ebImV6g7ZfNX09HW8ZRcvRumI8JHGhg&s",
+            "grade": 8.5,
+            "date": {
+                "day": 24,
+                "month": "June",
+                "year": 1994
+            },
+            "author": "Roger Allers, Rob Minkoff",
+            "description": "Lion prince Simba and his father are targeted by his bitter uncle, who wants to ascend the throne himself.",
+            "Age_limit": 0,
+            "time": 88
+        },
+        {
+            "id": 16,
+            "title": "The Shawshank Redemption",
+            "image_desc": "https://thegoodwillblog.in/wp-content/uploads/2023/07/d56b2942bc24e60043c79b061040c63d43ba529f0db1feff055e3b7a4dcc28ce._ur19201080_.jpg?w=1568",
+            "image": "https://m.media-amazon.com/images/M/MV5BMDAyY2FhYjctNDc5OS00MDNlLThiMGUtY2UxYWVkNGY2ZjljXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+            "grade": 9.3,
+            "date": {
+                "day": 14,
+                "month": "September",
+                "year": 1994
+            },
+            "author": "Frank Darabont",
+            "description": "Two imprisoned men form a deep bond over the years, finding solace and eventual redemption through acts of common decency.",
+            "Age_limit": 16,
+            "time": 142
+        },
+        {
+            "id": 17,
+            "title": "The Godfather",
+            "image_desc": "https://communist.red/wp-content/uploads/2022/08/godfather.png.webp",
+            "image": "https://m.media-amazon.com/images/M/MV5BYTJkNGQyZDgtZDQ0NC00MDM0LWEzZWQtYzUzZDEwMDljZWNjXkEyXkFqcGc@._V1_.jpg",
+            "grade": 9.2,
+            "date": {
+                "day": 24,
+                "month": "March",
+                "year": 1972
+            },
+            "author": "Francis Ford Coppola",
+            "description": "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.",
+            "Age_limit": 18,
+            "time": 175
+        },
+        {
+            "id": 18,
+            "title": "Pulp Fiction",
+            "image_desc": "https://www.destudio.com/sites/default/files/styles/project_media/public/2024-09/MV5BNTY1MzgzOTYxNV5BMl5BanBnXkFtZTgwMDI4OTEwMjE%40._V1_.jpg?h=7dc007da&itok=bjqLn509",
+            "image": "https://m.media-amazon.com/images/M/MV5BYTViYTE3ZGQtNDBlMC00ZTAyLTkyODMtZGRiZDg0MjA2YThkXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+            "grade": 8.9,
+            "date": {
+                "day": 14,
+                "month": "October",
+                "year": 1994
+            },
+            "author": "Quentin Tarantino",
+            "description": "The lives of two mob hitmen, a boxer, a gangster's wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
+            "Age_limit": 18,
+            "time": 154
+        },
+        {
+            "id": 19,
+            "title": "Schindler's List",
+            "image_desc": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS72xuWyCBW8OegYNllZnkK9x0l2vsajY_JCA&s",
+            "image": "https://m.media-amazon.com/images/M/MV5BNjM1ZDQxYWUtMzQyZS00MTE1LWJmZGYtNGUyNTdlYjM3ZmVmXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+            "grade": 9.0,
+            "date": {
+                "day": 30,
+                "month": "November",
+                "year": 1993
+            },
+            "author": "Steven Spielberg",
+            "description": "In Nazi-occupied Poland during World War II, Oskar Schindler gradually becomes concerned for his Jewish employees after witnessing their persecution by the Nazis.",
+            "Age_limit": 18,
+            "time": 195
+        },
+        {
+            "id": 20,
+            "title": "Fight Club",
+            "image_desc": "https://static1.srcdn.com/wordpress/wp-content/uploads/2020/02/Fight-Club-1.jpg",
+            "image": "https://m.media-amazon.com/images/M/MV5BOTgyOGQ1NDItNGU3Ny00MjU3LTg2YWEtNmEyYjBiMjI1Y2M5XkEyXkFqcGc@._V1_.jpg",
+            "grade": 8.8,
+            "date": {
+                "day": 15,
+                "month": "October",
+                "year": 1999
+            },
+            "author": "David Fincher",
+            "description": "An insomniac office worker and a devil-may-care soap maker form an underground fight club that evolves into something much, much more.",
+            "Age_limit": 18,
+            "time": 139
+        },
+        {
+            "id": 21,
+            "title": "The Silence of the Lambs",
+            "image_desc": "https://ychef.files.bbci.co.uk/1280x720/p04w4b54.jpg",
+            "image": "https://m.media-amazon.com/images/M/MV5BNDdhOGJhYzctYzYwZC00YmI2LWI0MjctYjg4ODdlMDExYjBlXkEyXkFqcGc@._V1_.jpg",
+            "grade": 8.6,
+            "date": {
+                "day": 14,
+                "month": "February",
+                "year": 1991
+            },
+            "author": "Jonathan Demme",
+            "description": "A young FBI cadet must confide in an incarcerated and manipulative cannibal killer to receive his help on catching another serial killer.",
+            "Age_limit": 18,
+            "time": 118
+        },
+        {
+            "id": 22,
+            "title": "Se7en",
+            "image_desc": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRftdKSqpyr3BgW1rvn6-hrZ_Ju4T3zrgY0lA&s",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYnWvWNFYuQ1sBb7NayPj9E_ApRALHARm7xQ&s",
+            "grade": 8.6,
+            "date": {
+                "day": 22,
+                "month": "September",
+                "year": 1995
+            },
+            "author": "David Fincher",
+            "description": "Two detectives hunt a serial killer who uses the seven deadly sins as his modus operandi.",
+            "Age_limit": 18,
+            "time": 127
+        },
+        {
+            "id": 23,
+            "title": "The Green Mile",
+            "image_desc": "https://ntvb.tmsimg.com/assets/p24429_v_h10_ar.jpg?w=1280&h=720",
+            "image": "https://m.media-amazon.com/images/M/MV5BMTUxMzQyNjA5MF5BMl5BanBnXkFtZTYwOTU2NTY3._V1_FMjpg_UX1000_.jpg",
+            "grade": 8.6,
+            "date": {
+                "day": 10,
+                "month": "December",
+                "year": 1999
+            },
+            "author": "Frank Darabont",
+            "description": "A supernatural tale set on death row in a Southern prison, where gentle giant John Coffey has the miraculous ability to heal people's ailments.",
+            "Age_limit": 13,
+            "time": 189
+        },
+        {
+            "id": 24,
+            "title": "The Dark Knight Rises",
+            "image_desc": "https://theconsultingdetectivesblog.com/wp-content/uploads/2014/06/the-dark-knight-original.jpg",
+            "image": "https://m.media-amazon.com/images/M/MV5BMTk4ODQzNDY3Ml5BMl5BanBnXkFtZTcwODA0NTM4Nw@@._V1_FMjpg_UX1000_.jpg",
+            "grade": 8.4,
+            "date": {
+                "day": 20,
+                "month": "July",
+                "year": 2012
+            },
+            "author": "Christopher Nolan",
+            "description": "Eight years after the events of The Dark Knight, Bruce Wayne comes out of self-imposed exile when a new foe, Bane, emerges to threaten Gotham.",
+            "Age_limit": 13,
+            "time": 164
+        },
+        {
+            "id": 25,
+            "title": "The Prestige",
+            "image_desc": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvvEcXJRzViV9Reuzl0AL0ceajdutgGgt-Ag&s",
+            "image": "https://images-na.ssl-images-amazon.com/images/I/614qyMK10+L._AC_UL210_SR210,210_.jpg",
+            "grade": 8.5,
+            "date": {
+                "day": 20,
+                "month": "October",
+                "year": 2006
+            },
+            "author": "Christopher Nolan",
+            "description": "Two magicians engage in a bitter rivalry, each trying to outperform the other's stage illusions, while dealing with their own personal demons.",
+            "Age_limit": 13,
+            "time": 130
+        },
+        {
+            "id": 26,
+            "title": "The Departed",
+            "image_desc": "https://beam-images.warnermediacdn.com/BEAM_LWM_DELIVERABLES/f7e8a59c-740b-40cc-a1f5-2b25b48ec588/b9cc83ecd5789cd6757de87da57819de34011847.jpg?host=wbd-images.prod-vod.h264.io&partner=beamcom",
+            "image": "https://m.media-amazon.com/images/M/MV5BMTI1MTY2OTIxNV5BMl5BanBnXkFtZTYwNjQ4NjY3._V1_FMjpg_UX1000_.jpg",
+            "grade": 8.5,
+            "date": {
+                "day": 6,
+                "month": "October",
+                "year": 2006
+            },
+            "author": "Martin Scorsese",
+            "description": "An undercover cop and a mole in the police attempt to identify each other while infiltrating an Irish gang in South Boston.",
+            "Age_limit": 18,
+            "time": 151
+        },
+        {
+            "id": 27,
+            "title": "The Usual Suspects",
+            "image_desc": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwX6YdvxIs-hKUGW2ePwK0lgF-MZ5rVZVGcQ&s",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCw1IK50zplhbzbazjRcTvygEDUmY10O1gBg&s",
+            "grade": 8.5,
+            "date": {
+                "day": 16,
+                "month": "August",
+                "year": 1995
+            },
+            "author": "Bryan Singer",
+            "description": "A sole survivor tells the twisted tale of the notorious Keyser Söze, who uses his fearsome reputation to manipulate others.",
+            "Age_limit": 16,
+            "time": 106
+        },
+        {
+            "id": 28,
+            "title": "Goodfellas",
+            "image_desc": "https://m.media-amazon.com/images/M/MV5BYjllYzEzZDUtMmUxMi00MjEwLWFiYTQtNTg5OWY1MTlhYjI0XkEyXkFqcGdeQW1pYnJ5YW50._V1_.jpg",
+            "image": "https://m.media-amazon.com/images/M/MV5BN2E5NzI2ZGMtY2VjNi00YTRjLWI1MDUtZGY5OWU1MWJjZjRjXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+            "grade": 8.7,
+            "date": {
+                "day": 19,
+                "month": "September",
+                "year": 1990
+            },
+            "author": "Martin Scorsese",
+            "description": "The story of Henry Hill and his life in the mob, covering his rise to power and eventual downfall.",
+            "Age_limit": 18,
+            "time": 146
+        },
+        {
+            "id": 29,
+            "title": "The Shining",
+            "image_desc": "https://play-lh.googleusercontent.com/proxy/Deto4AGnw9BvIWNInOsjKWVXAm4Thnty8UHOuXkeB-pBgrSsy4WJumlHBGqa-iztfqHYkKh2l7bc1jxPLTN8L-tVREOjNPmO1sYTJS7N6w=s1920-w1920-h1080",
+            "image": "https://m.media-amazon.com/images/M/MV5BNmM5ZThhY2ItOGRjOS00NzZiLWEwYTItNDgyMjFkOTgxMmRiXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+            "grade": 8.4,
+            "date": {
+                "day": 23,
+                "month": "May",
+                "year": 1980
+            },
+            "author": "Stanley Kubrick",
+            "description": "A family heads to an isolated hotel for the winter where an evil spiritual presence drives the father to violence, while his psychic son sees horrific forebodings from the past and future.",
+            "Age_limit": 18,
+            "time": 146
+        },
+        {
+            "id": 30,
+            "title": "Inception",
+            "image_desc": "https://static1.srcdn.com/wordpress/wp-content/uploads/2019/12/Inception-movie-poster-1.jpg",
+            "image": "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_FMjpg_UX1000_.jpg",
+            "grade": 8.8,
+            "date": {
+                "day": 16,
+                "month": "July",
+                "year": 2010
+            },
+            "author": "Christopher Nolan",
+            "description": "A thief who enters the dreams of others to steal secrets from their subconscious is given a chance to have his criminal history erased if he can successfully perform an inception.",
+            "Age_limit": 13,
+            "time": 148
+        },
+        {
+            "id": 31,
+            "title": "The Lion King",
+            "image_desc": "https://variety.com/wp-content/uploads/2024/08/mufasa.jpg?w=1000&h=667&crop=1",
+            "image": "https://m.media-amazon.com/images/M/MV5BMjIwMjE1Nzc4NV5BMl5BanBnXkFtZTgwNDg4OTA1NzM@._V1_.jpg",
+            "grade": 8.5,
+            "date": {
+                "day": 24,
+                "month": "June",
+                "year": 1994
+            },
+            "author": "Roger Allers, Rob Minkoff",
+            "description": "A lion prince is cast out of his pride by his cruel uncle, who claims he killed his father. While living in exile with two companions, he grows up, and learns to take his rightful place as king.",
+            "Age_limit": 0,
+            "time": 88
+        },
+        {
+            "id": 32,
+            "title": "Star Wars: Episode V - The Empire Strikes Back",
+            "image_desc": "https://images.bauerhosting.com/legacy/empire-tmdb/films/1891/images/AkE7LQs2hPMG5tpWYcum847Knre.jpg?ar=16%3A9&fit=crop&crop=top&auto=format&w=1440&q=80",
+            "image": "https://m.media-amazon.com/images/I/711xW80aSGL.jpg",
+            "grade": 8.7,
+            "date": {
+                "day": 21,
+                "month": "May",
+                "year": 1980
+            },
+            "author": "Irvin Kershner",
+            "description": "After the rebels are brutally overpowered by the Empire on Hoth, Luke Skywalker begins Jedi training with Yoda, while his friends are pursued by Darth Vader.",
+            "Age_limit": 12,
+            "time": 124
+        },
+        {
+            "id": 33,
+            "title": "The Matrix",
+            "image_desc": "https://www.syfy.com/sites/syfy/files/2021/03/the-matrix.jpeg",
+            "image": "https://m.media-amazon.com/images/M/MV5BN2NmN2VhMTQtMDNiOS00NDlhLTliMjgtODE2ZTY0ODQyNDRhXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+            "grade": 8.7,
+            "date": {
+                "day": 31,
+                "month": "March",
+                "year": 1999
+            },
+            "author": "Lana Wachowski, Lilly Wachowski",
+            "description": "A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.",
+            "Age_limit": 16,
+            "time": 136
+        },
+        {
+            "id": 34,
+            "title": "Interstellar",
+            "image_desc": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMhIzWjco4anCSTNLObI2IA5JKUQ0H6qQ5Fg&s",
+            "image": "https://m.media-amazon.com/images/M/MV5BYzdjMDAxZGItMjI2My00ODA1LTlkNzItOWFjMDU5ZDJlYWY3XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+            "grade": 8.6,
+            "date": {
+                "day": 7,
+                "month": "November",
+                "year": 2014
+            },
+            "author": "Christopher Nolan",
+            "description": "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
+            "Age_limit": 13,
+            "time": 169
+        },
+        {
+            "id": 35,
+            "title": "Forrest Gump",
+            "image_desc": "https://static1.srcdn.com/wordpress/wp-content/uploads/2024/05/forrest-gump-running-1.jpg",
+            "image": "https://m.media-amazon.com/images/M/MV5BNDYwNzVjMTItZmU5YS00YjQ5LTljYjgtMjY2NDVmYWMyNWFmXkEyXkFqcGc@._V1_.jpg",
+            "grade": 8.8,
+            "date": {
+                "day": 6,
+                "month": "July",
+                "year": 1994
+            },
+            "author": "Robert Zemeckis",
+            "description": "The presidencies of Kennedy and Johnson, the Vietnam War, the Watergate scandal and other historical events unfold from the perspective of an Alabama man with an extraordinary, though simple mind.",
+            "Age_limit": 12,
+            "time": 142
+        },
+        {
+            "id": 36,
+            "title": "The Dark Knight",
+            "image_desc": "https://theconsultingdetectivesblog.com/wp-content/uploads/2014/06/the-dark-knight-original.jpg",
+            "image": "https://upload.wikimedia.org/wikipedia/en/7/77/Dark_knight_returns.jpg",
+            "grade": 9.0,
+            "date": {
+                "day": 18,
+                "month": "July",
+                "year": 2008
+            },
+            "author": "Christopher Nolan",
+            "description": "When the menace known as the Joker emerges from his mysterious past, he wreaks havoc and chaos on the people of Gotham, forcing Batman to consider new methods of fighting crime.",
+            "Age_limit": 13,
+            "time": 152
+        },
+        {
+            "id": 37,
+            "title": "The Godfather: Part II",
+            "image_desc": "https://m.media-amazon.com/images/M/MV5BMTQyMDc0ODY1OV5BMl5BanBnXkFtZTgwMDI4NjIwMjE@._V1_.jpg",
+            "image": "https://m.media-amazon.com/images/M/MV5BNzc1OWY5MjktZDllMi00ZDEzLWEwMGItYjk1YmRhYjBjNTVlXkEyXkFqcGc@._V1_.jpg",
+            "grade": 9.0,
+            "date": {
+                "day": 20,
+                "month": "December",
+                "year": 1974
+            },
+            "author": "Francis Ford Coppola",
+            "description": "The early life and career of Vito Corleone in 1920s New York is portrayed, along with the rise to power of his son Michael as the new Godfather.",
+            "Age_limit": 18,
+            "time": 202
+        },
+        {
+            "id": 38,
+            "title": "Back to the Future",
+            "image_desc": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdAji4VyrO448jMw8fX_Dj2KFkbNyXzOQO3w&s",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSp8LJvzg-v6om2Kzf4axFeQTAgiK_I_cV0BQ&s",
+            "grade": 8.5,
+            "date": {
+                "day": 3,
+                "month": "July",
+                "year": 1985
+            },
+            "author": "Robert Zemeckis",
+            "description": "Marty McFly, a teenager, is accidentally sent 30 years into the past in a time-traveling DeLorean invented by his close friend, the eccentric scientist Doc Brown.",
+            "Age_limit": 0,
+            "time": 116
+        },
+        {
+            "id": 39,
+            "title": "The Green Mile",
+            "image_desc": "https://ntvb.tmsimg.com/assets/p24429_v_h10_ar.jpg?w=1280&h=720",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWEZnYYvwPxS_EPf8g-ne8mnAVmu1som0H0A&s",
+            "grade": 8.6,
+            "date": {
+                "day": 10,
+                "month": "December",
+                "year": 1999
+            },
+            "author": "Frank Darabont",
+            "description": "A supernatural tale set on death row in a Southern prison, where gentle giant John Coffey has the miraculous ability to heal people's ailments.",
+            "Age_limit": 13,
+            "time": 189
+        },
+        {
+            "id": 40,
+            "title": "The Lord of the Rings: The Fellowship of the Ring",
+            "image_desc": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwjvtARVQAFZvjgby4i1ev7I2h0OgHcG8YoQ&s",
+            "image": "https://m.media-amazon.com/images/I/71lKy8RoFUL._AC_UF1000,1000_QL80_.jpg",
+            "grade": 8.8,
+            "date": {
+                "day": 19,
+                "month": "December",
+                "year": 2001
+            },
+            "author": "Peter Jackson",
+            "description": "A young hobbit, Frodo Baggins, is tasked with destroying a powerful artifact, the One Ring, to prevent the dark lord Sauron from ruling Middle-earth.",
+            "Age_limit": 12,
+            "time": 178
+        },
+        {
+            "id": 41,
+            "title": "Pulp Fiction",
+            "image_desc": "https://images.squarespace-cdn.com/content/v1/5fea3b3d46d31b1ddd850cf5/1610152372135-4WU5WYZPQS9LYQA3K9YF/pulpfiction.jpeg",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4toxZos3fPH3eZpDP3B6zYz-vJZa84Ijcxg&s",
+            "grade": 8.9,
+            "date": {
+                "day": 14,
+                "month": "October",
+                "year": 1994
+            },
+            "author": "Quentin Tarantino",
+            "description": "The lives of two mob hitmen, a boxer, a gangster's wife, and a pair of diner bandits intertwine in four tales of violence and redemption.",
+            "Age_limit": 18,
+            "time": 154
+        },
+        {
+            "id": 42,
+            "title": "Schindler's List",
+            "image_desc": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtOfXAQaMLuo7j6xn119LMqOGVNTYr7itBJA&s",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSz_6FkNsL0gwsaEm4wTxb6DgVAyiZSoBWbsg&s",
+            "grade": 9.0,
+            "date": {
+                "day": 30,
+                "month": "November",
+                "year": 1993
+            },
+            "author": "Steven Spielberg",
+            "description": "In German-occupied Poland during World War II, businessman Oskar Schindler saves more than a thousand Polish Jews from the Holocaust by employing them in his factory.",
+            "Age_limit": 18,
+            "time": 195
+        },
+        {
+            "id": 43,
+            "title": "Fight Club",
+            "image_desc": "https://static1.srcdn.com/wordpress/wp-content/uploads/2020/02/Fight-Club-1.jpg",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKtwT4NCCZro2b_f_2Nv8xUW5UqNNypE6OQw&s",
+            "grade": 8.8,
+            "date": {
+                "day": 15,
+                "month": "October",
+                "year": 1999
+            },
+            "author": "David Fincher",
+            "description": "An insomniac office worker and a devil-may-care soap maker form an underground fight club that evolves into something much, much more.",
+            "Age_limit": 18,
+            "time": 139
+        },
+        {
+            "id": 44,
+            "title": "The Shawshank Redemption",
+            "image_desc": "https://thegoodwillblog.in/wp-content/uploads/2023/07/d56b2942bc24e60043c79b061040c63d43ba529f0db1feff055e3b7a4dcc28ce._ur19201080_.jpg?w=1568",
+            "image": "https://m.media-amazon.com/images/M/MV5BMDAyY2FhYjctNDc5OS00MDNlLThiMGUtY2UxYWVkNGY2ZjljXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
+            "grade": 9.3,
+            "date": {
+                "day": 14,
+                "month": "October",
+                "year": 1994
+            },
+            "author": "Frank Darabont",
+            "description": "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
+            "Age_limit": 18,
+            "time": 142
+        },
+        {
+            "id": 45,
+            "title": "The Godfather",
+            "image_desc": "https://m.media-amazon.com/images/M/MV5BMTQyMDc0ODY1OV5BMl5BanBnXkFtZTgwMDI4NjIwMjE@._V1_.jpg",
+            "image": "https://m.media-amazon.com/images/M/MV5BYTJkNGQyZDgtZDQ0NC00MDM0LWEzZWQtYzUzZDEwMDljZWNjXkEyXkFqcGc@._V1_.jpg",
+            "grade": 9.2,
+            "date": {
+                "day": 24,
+                "month": "March",
+                "year": 1972
+            },
+            "author": "Francis Ford Coppola",
+            "description": "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.",
+            "Age_limit": 18,
+            "time": 175
+        },
+        {
+            "id": 46,
+            "title": "The Prestige",
+            "image_desc": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvvEcXJRzViV9Reuzl0AL0ceajdutgGgt-Ag&s",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUy4wtjc66vTQvgggoPSvB88vKAqjBNUKDvA&s",
+            "grade": 8.5,
+            "date": {
+                "day": 20,
+                "month": "October",
+                "year": 2006
+            },
+            "author": "Christopher Nolan",
+            "description": "Two magicians engage in a bitter rivalry, each trying to create the ultimate stage illusion while sacrificing everything they have to outwit each other.",
+            "Age_limit": 13,
+            "time": 130
+        },
+        {
+            "id": 47,
+            "title": "Gladiator",
+            "image_desc": "https://static1.srcdn.com/wordpress/wp-content/uploads/2024/10/maximus-dream-family-gladiator.jpg",
+            "image": "https://ticketon.kz/files/media/%D0%93%D0%BB%D0%B0%D0%B4%D0%B8%D0%B0%D1%82%D0%BE%D1%80%202%20(2024)%D1%8B%D0%B2%D1%8B.jpg",
+            "grade": 8.5,
+            "date": {
+                "day": 5,
+                "month": "May",
+                "year": 2000
+            },
+            "author": "Ridley Scott",
+            "description": "A former Roman General sets out to exact vengeance against the corrupt emperor who murdered his family and sent him into slavery.",
+            "Age_limit": 16,
+            "time": 155
+        },
+        {
+            "id": 48,
+            "title": "The Silence of the Lambs",
+            "image_desc": "https://ychef.files.bbci.co.uk/1280x720/p04w4b54.jpg",
+            "image": "https://m.media-amazon.com/images/M/MV5BZTk5NTYzMGEtMDE2OS00ODYxLWJiNjQtNGMyMmM2MTE0M2QxXkEyXkFqcGc@._V1_.jpg",
+            "grade": 8.6,
+            "date": {
+                "day": 14,
+                "month": "February",
+                "year": 1991
+            },
+            "author": "Jonathan Demme",
+            "description": "A young FBI cadet must receive the help of an incarcerated and manipulative cannibal killer to help catch another serial killer, a madman who skins his victims.",
+            "Age_limit": 18,
+            "time": 118
+        },
+        {
+            "id": 49,
+            "title": "The Dark Knight Rises",
+            "image_desc": "https://theconsultingdetectivesblog.com/wp-content/uploads/2014/06/the-dark-knight-original.jpg",
+            "image": "https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p8757074_p_v11_at.jpg",
+            "grade": 8.4,
+            "date": {
+                "day": 20,
+                "month": "July",
+                "year": 2012
+            },
+            "author": "Christopher Nolan",
+            "description": "Eight years after the Joker's reign of terror, Batman is forced to come out of retirement when a new foe, Bane, threatens Gotham City.",
+            "Age_limit": 13,
+            "time": 164
+        },
+        {
+            "id": 50,
+            "title": "Toy Story 3",
+            "image_desc": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIVmC-qkhvKTrm99URBh0P8JZh6KqqLq4_yA&s",
+            "image": "https://m.media-amazon.com/images/M/MV5BMTgxOTY4Mjc0MF5BMl5BanBnXkFtZTcwNTA4MDQyMw@@._V1_FMjpg_UX1000_.jpg",
+            "grade": 8.2,
+            "date": {
+                "day": 18,
+                "month": "June",
+                "year": 2010
+            },
+            "author": "Lee Unkrich",
+            "description": "As Andy prepares to leave for college, Woody, Buzz, and the rest of the toys are mistakenly delivered to a daycare center instead, where they face new challenges.",
+            "Age_limit": 0,
+            "time": 103
+        }
+    ],
+    "series": [
+        {
+            "id": 1,
+            "title": "ga me of thrones",
+            "image": "https://mediaproxy.tvtropes.org/width/1200/https://static.tvtropes.org/pmwiki/pub/images/gotposterbig.png",
+            "grade": 9.0,
+            "series": [
+                {
+                    "id": 1,
+                    "series_image": "https://static01.nyt.com/images/2011/04/10/arts/THRONES-6/THRONES-6-superJumbo-v2.jpg",
+                    "title": "first episode",
+                    "description": "As Andy prepares to leave for college, Woody, Buzz, and the rest of the toys are mistakenly delivered to a daycare center instead, where they face new challenges.",
+                    "date": {
+                        "day": 17,
+                        "month": "April",
+                        "year": 2011
+                    }
+                },
+                {
+                    "id": 2,
+                    "series_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRs7oPxAExrI25SmViZmL01gUm8S5NN74Mjpg&s",
+                    "title": "second episode",
+                    "description": "The conflict between the Starks and the Lannisters escalates as secrets begin to unravel.",
+                    "date": {
+                        "day": 24,
+                        "month": "April",
+                        "year": 2011
+                    }
+                },
+                {
+                    "id": 3,
+                    "series_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxLp18jvyhQ-X4y9_HOnfVXqQUVlRFdnxnoQ&s",
+                    "title": "third episode",
+                    "description": "Daenerys faces new challenges in her quest for power across the Narrow Sea.",
+                    "date": {
+                        "day": 1,
+                        "month": "May",
+                        "year": 2011
+                    }
+                },
+                {
+                    "id": 4,
+                    "series_image": "https://www.rollingstone.com/wp-content/uploads/2018/06/rs-28214-ot-1800-1402672509.jpg",
+                    "title": "fourth episode",
+                    "description": "Jon Snow discovers secrets beyond the Wall that could change everything.",
+                    "date": {
+                        "day": 8,
+                        "month": "May",
+                        "year": 2011
+                    }
+                },
+                {
+                    "id": 5,
+                    "series_image": "https://www.hollywoodreporter.com/wp-content/uploads/2015/06/got509_102414_nw_12861.jpg",
+                    "title": "fifth episode",
+                    "description": "Tyrion navigates the political intrigue of King’s Landing while Arya struggles to survive.",
+                    "date": {
+                        "day": 15,
+                        "month": "May",
+                        "year": 2011
+                    }
+                }
+            ],
+            "description": "Nine noble families fight for control over the lands of Westeros, while an ancient enemy returns after being dormant for millennia.",
+            "Age_limit": 18
+        },
+        {
+            "id": 2,
+            "title": "breaking bad",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqhGRPHbiT9WRbp4Mc7kKgT6LHSPHrDiWfEg&s",
+            "grade": 9.5,
+            "series": [
+                {
+                    "id": 1,
+                    "series_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeG4JZC_steTWdpPAeefkoHsvTcB_KKHr_Ig&s",
+                    "title": "pilot",
+                    "description": "High school chemistry teacher Walter White’s life changes when he is diagnosed with terminal lung cancer.",
+                    "date": {
+                        "day": 20,
+                        "month": "January",
+                        "year": 2008
+                    }
+                },
+                {
+                    "id": 2,
+                    "series_image": "https://fathersonholygore.com/wp-content/uploads/2016/05/cover31.png",
+                    "title": "cat’s in the bag...",
+                    "description": "Walt and Jesse struggle to dispose of the bodies and face consequences of their actions.",
+                    "date": {
+                        "day": 27,
+                        "month": "January",
+                        "year": 2008
+                    }
+                },
+                {
+                    "id": 3,
+                    "series_image": "https://images.squarespace-cdn.com/content/v1/63642fe08c13cf0e41968e98/1667590856883-2PX7CM3B1W2XLDVKS9YB/breaking-bad.jpg",
+                    "title": "the bag’s in the river",
+                    "description": "Walter faces a moral crisis as he decides the fate of a captive.",
+                    "date": {
+                        "day": 10,
+                        "month": "February",
+                        "year": 2008
+                    }
+                },
+                {
+                    "id": 4,
+                    "series_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5WuJ7SNj7a3Xb6g9HdrDVQJACdiV4yMrjnA&s",
+                    "title": "cancer man",
+                    "description": "Walter reveals his diagnosis to his family, while Hank investigates a new drug operation.",
+                    "date": {
+                        "day": 17,
+                        "month": "February",
+                        "year": 2008
+                    }
+                },
+                {
+                    "id": 5,
+                    "series_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4OuxooMvb4Krq5WdxMpUeaKCZRI6bYt0AwA&s",
+                    "title": "gray matter",
+                    "description": "Walter’s past with former colleagues resurfaces, offering him a way out of his financial troubles.",
+                    "date": {
+                        "day": 24,
+                        "month": "February",
+                        "year": 2008
+                    }
+                }
+            ],
+            "description": "A high school chemistry teacher turned methamphetamine producer partners with a former student to secure his family’s future before he dies.",
+            "Age_limit": 18
+        },
+        {
+            "id": 3,
+            "title": "stranger things",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEw62wJ70HHAQxXaj42w0KT6NlrRZY-XpjpQ&s",
+            "grade": 8.7,
+            "series": [
+                {
+                    "id": 1,
+                    "series_image": "https://cdn.mos.cms.futurecdn.net/idSmsumfA4hsZs8Qgz3Y7a.jpg",
+                    "title": "the vanishing of will byers",
+                    "description": "When a young boy disappears, his mother, a police chief, and his friends must confront terrifying forces to get him back.",
+                    "date": {
+                        "day": 15,
+                        "month": "July",
+                        "year": 2016
+                    }
+                },
+                {
+                    "id": 2,
+                    "series_image": "https://variety.com/wp-content/uploads/2017/10/stranger-things-2.jpg",
+                    "title": "the weirdo on maple street",
+                    "description": "Mike hides Eleven in his house and begins to learn more about her extraordinary abilities.",
+                    "date": {
+                        "day": 15,
+                        "month": "July",
+                        "year": 2016
+                    }
+                },
+                {
+                    "id": 3,
+                    "series_image": "https://i.guim.co.uk/img/media/fc732d54866405d894684d78590c0c8884340cf6/519_0_5867_3520/master/5867.jpg?width=1200&quality=85&auto=format&fit=max&s=ba4d67c1f3b21d197a90d229154fb87c",
+                    "title": "holly, jolly",
+                    "description": "Joyce tries to connect with her son through Christmas lights, while Nancy and Jonathan team up to investigate Steve’s house.",
+                    "date": {
+                        "day": 15,
+                        "month": "July",
+                        "year": 2016
+                    }
+                },
+                {
+                    "id": 4,
+                    "series_image": "https://dnm.nflximg.net/api/v6/BvVbc2Wxr2w6QuoANoSpJKEIWjQ/AAAAQRqH7ogwUemf3k4qrfGLG385vAIzZk2FIvl1YMbSj71WovqswVXXEzgBPA2iKen3KFZbbYOVyvcKl4LD5yin_6kdDuiuMAP6x3aKNYmholsJo1bwjT_Fe32kMzfV7IDYWv2p8CxlAd7mF4lXNylqXgc9sQM.jpg?r=e2c",
+                    "title": "the body",
+                    "description": "After Will’s body is discovered in the lake, his friends begin to question what they believe.",
+                    "date": {
+                        "day": 15,
+                        "month": "July",
+                        "year": 2016
+                    }
+                },
+                {
+                    "id": 5,
+                    "series_image": "https://dnm.nflximg.net/api/v6/BvVbc2Wxr2w6QuoANoSpJKEIWjQ/AAAAQUQXspCa7-ML9jU-MDmoKbzUZVyO0y9R8zEemkDXTDn0opcGGT7lBRc6pBuirUOGyjNgelGidVH4nJN5HnUkXCuWlv2c0A-52tFG7r5LCLBc7LJc-L5YB0kPe0e8KaMluyhxv_6BXrMDfQ9jLifB-qtqBGQ.jpg?r=0c4",
+                    "title": "the flea and the acrobat",
+                    "description": "Hopper breaks into Hawkins Laboratory to uncover the truth about the mysterious events.",
+                    "date": {
+                        "day": 15,
+                        "month": "July",
+                        "year": 2016
+                    }
+                }
+            ],
+            "description": "A group of kids discover a series of supernatural mysteries in their small town, unraveling government secrets and battling strange forces.",
+            "Age_limit": 16
+        }
+    ]
+}
