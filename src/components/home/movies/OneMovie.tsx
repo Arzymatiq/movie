@@ -1,16 +1,21 @@
 import React, { FC, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { AppDispatch, RootState } from "../../../store/store";
+import {
+    AppDispatch,
+    RootState,
+    useAppDispatch,
+    useAppSelector,
+} from "../../../store/store";
 import { IMovie } from "../../../store/types/types";
 import { getMovie } from "../../../store/posts/movieAction";
 import style from "../style/moveItem.module.scss";
 
 const OneMovie: FC = () => {
     const { id } = useParams<string>();
-    const dispatch = useDispatch<AppDispatch>();
+    const dispatch = useAppDispatch();
 
-    const { movies, loading } = useSelector((state: RootState) => state.posts);
+    const { movies, loading } = useAppSelector((state) => state.posts);
 
     useEffect(() => {
         dispatch(getMovie());

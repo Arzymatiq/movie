@@ -1,6 +1,5 @@
 import React, { useState, useEffect, FC } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { AppDispatch, RootState } from "../../../store/store";
+import { useAppDispatch, useAppSelector } from "../../../store/store";
 import { getMovie } from "../../../store/posts/movieAction";
 import MoviesItem from "./MoviesItem";
 import style from "../style/post.module.scss";
@@ -9,12 +8,10 @@ import { useNavigate } from "react-router-dom";
 const MoviesList: FC = () => {
     const [hoveredPost, setHoveredPost] = useState<number | null>(null);
 
-    const { movies, loading, error } = useSelector(
-        (state: RootState) => state.posts
-    );
+    const { movies, loading, error } = useAppSelector((state) => state.posts);
 
     const navigate = useNavigate();
-    const dispatch = useDispatch<AppDispatch>();
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
         dispatch(getMovie());

@@ -2,8 +2,7 @@ import React from "react";
 import { useInput } from "../../hoks/useInput";
 import style from "./logForm.module.scss";
 import { register } from "../../store/user/userAction";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../store/store";
+import { useAppDispatch } from "../../store/store";
 import { useNavigate } from "react-router-dom";
 import InputField from "./InputField";
 
@@ -25,7 +24,7 @@ const RegisterForm = () => {
     const passWord = useInput("", passwordValidation);
     const fullName = useInput("", fullNameValidation);
 
-    const dispatch = useDispatch<AppDispatch>();
+    const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
     const handleSubmit = async (e: React.FormEvent) => {

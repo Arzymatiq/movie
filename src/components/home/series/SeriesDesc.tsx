@@ -1,15 +1,20 @@
 import React, { FC, useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { AppDispatch, RootState } from "../../../store/store";
+import {
+    AppDispatch,
+    RootState,
+    useAppDispatch,
+    useAppSelector,
+} from "../../../store/store";
 import { ISeries } from "../../../store/types/types";
 import { getSeries } from "../../../store/posts/movieAction";
 import style from "../style/seriesitem.module.scss";
 
 const SeriesDesc: FC = () => {
     const { id } = useParams<string>();
-    const { series, loading } = useSelector((state: RootState) => state.posts);
-    const dispatch = useDispatch<AppDispatch>();
+    const { series, loading } = useAppSelector((state) => state.posts);
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
         dispatch(getSeries());

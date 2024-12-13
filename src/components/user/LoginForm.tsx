@@ -2,8 +2,7 @@ import React from "react";
 import { useInput } from "../../hoks/useInput";
 import style from "./logForm.module.scss";
 import { loginFunc } from "../../store/user/userAction";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../store/store";
+import { useAppDispatch } from "../../store/store";
 import { useNavigate } from "react-router-dom";
 import { useBooleanInput } from "../../hoks/useBooleanInput";
 import InputField from "./InputField";
@@ -23,7 +22,7 @@ const LoginForm = () => {
     const passWord = useInput("", passwordValidation);
     const agreeToDataManagement = useBooleanInput(false);
 
-    const dispatch = useDispatch<AppDispatch>();
+    const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
     const handleSubmit = async (e: React.FormEvent) => {

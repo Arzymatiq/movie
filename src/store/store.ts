@@ -2,6 +2,7 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 
 import userSlice from "./user/userSlice";
 import postSlice from "./posts/postSlice";
+import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
 const rootReducer = combineReducers({
     users: userSlice,
@@ -13,5 +14,9 @@ export const store = configureStore({
 });
 
 export default store;
-export type RootState = ReturnType<typeof rootReducer>;
+
+export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+
+export const useAppDispatch: () => AppDispatch = useDispatch;
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;

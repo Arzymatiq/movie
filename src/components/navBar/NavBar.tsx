@@ -4,15 +4,20 @@ import style from "./navBar.module.scss";
 import { updateToken } from "../../helpers/function";
 import { logout } from "../../store/user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../store/store";
+import {
+    AppDispatch,
+    RootState,
+    useAppDispatch,
+    useAppSelector,
+} from "../../store/store";
 
 const NavBar = () => {
     const navigate = useNavigate();
-    const dispatch = useDispatch<AppDispatch>();
+    const dispatch = useAppDispatch();
     const [showDropdown, setShowDropdown] = useState(false);
 
     const token = useMemo(() => localStorage.getItem("token"), []);
-    const { user } = useSelector((state: RootState) => state.users);
+    const { user } = useAppSelector((state) => state.users);
 
     useEffect(() => {
         updateToken();

@@ -1,7 +1,12 @@
 import React, { useState, useEffect, useCallback, FC } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { ISeries } from "../../../store/types/types";
-import { AppDispatch, RootState } from "../../../store/store";
+import {
+    AppDispatch,
+    RootState,
+    useAppDispatch,
+    useAppSelector,
+} from "../../../store/store";
 import { getSeries } from "../../../store/posts/movieAction";
 import SeriesItem from "./SeriesItem";
 import style from "../style/post.module.scss";
@@ -10,10 +15,8 @@ import { useNavigate } from "react-router-dom";
 const SeriesList: FC = () => {
     const [hoveredPost, setHoveredPost] = useState<number | null>(null);
     const navigate = useNavigate();
-    const { series, loading, error } = useSelector(
-        (state: RootState) => state.posts
-    );
-    const dispatch = useDispatch<AppDispatch>();
+    const { series, loading, error } = useAppSelector((state) => state.posts);
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
         dispatch(getSeries());
