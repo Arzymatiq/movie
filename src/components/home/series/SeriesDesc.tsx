@@ -1,13 +1,6 @@
 import React, { FC, useEffect, useMemo } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import {
-    AppDispatch,
-    RootState,
-    useAppDispatch,
-    useAppSelector,
-} from "../../../store/store";
-import { ISeries } from "../../../store/types/types";
+import { useAppDispatch, useAppSelector } from "../../../store/store";
 import { getSeries } from "../../../store/posts/movieAction";
 import style from "../style/seriesitem.module.scss";
 

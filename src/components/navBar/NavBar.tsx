@@ -3,13 +3,7 @@ import { useNavigate } from "react-router-dom";
 import style from "./navBar.module.scss";
 import { updateToken } from "../../helpers/function";
 import { logout } from "../../store/user/userSlice";
-import { useDispatch, useSelector } from "react-redux";
-import {
-    AppDispatch,
-    RootState,
-    useAppDispatch,
-    useAppSelector,
-} from "../../store/store";
+import { useAppDispatch, useAppSelector } from "../../store/store";
 
 const NavBar = () => {
     const navigate = useNavigate();

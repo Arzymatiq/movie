@@ -10,77 +10,61 @@ const apiClient = axios.create({
     },
 });
 
-apiClient.interceptors.request.use(
-    (config) => {
-        try {
-            const tokens: Tokens | null = JSON.parse(
-                localStorage.getItem("tokens") || "null"
-            );
-            if (tokens?.access) {
-                config.headers["Authorization"] = `Bearer ${tokens.access}`;
-            }
-        } catch (err) {
-            console.error("Ошибка чтения токенов из localStorage:", err);
-        }
-        return config;
-    },
-    (error) => Promise.reject(error)
-);
+apiClient.interceptors.request.use((config) => {
+    const tokens: Tokens | null = JSON.parse(
+        localStorage.getItem("tokens") || "null"
+    );
+    if (tokens?.access) {
+        config.headers["Authorization"] = `Bearer ${tokens.access}`;
+    }
+    return config;
+}, Promise.reject);
 
 let isRefreshing = false;
-let failedQueue: {
-    resolve: (token: string) => void;
-    reject: (error: any) => void;
-}[] = [];
+type QueueCallback = (token: string | Error) => void;
+const queue: QueueCallback[] = [];
 
-const processQueue = (error: any, token: string | null = null) => {
-    failedQueue.forEach((prom) => {
-        if (token) {
-            prom.resolve(token);
-        } else {
-            prom.reject(error);
-        }
-    });
-    failedQueue = [];
+const handleQueue = (tokenOrError: string | Error) => {
+    queue.forEach((cb) => cb(tokenOrError));
+    queue.length = 0;
 };
 
 apiClient.interceptors.response.use(
     (response) => response,
     async (error) => {
-        const originalRequest = error.config;
+        const { response, config } = error;
 
-        if (error.response?.status === 401 && !originalRequest._isRetry) {
+        if (response?.status === 401 && !config._isRetry) {
             if (isRefreshing) {
                 return new Promise((resolve, reject) => {
-                    failedQueue.push({ resolve, reject });
-                })
-                    .then((token) => {
-                        originalRequest.headers[
-                            "Authorization"
-                        ] = `Bearer ${token}`;
-                        return apiClient.request(originalRequest);
-                    })
-                    .catch((err) => Promise.reject(err));
+                    queue.push((tokenOrError) => {
+                        if (tokenOrError instanceof Error) {
+                            reject(tokenOrError);
+                        } else {
+                            config.headers[
+                                "Authorization"
+                            ] = `Bearer ${tokenOrError}`;
+                            resolve(apiClient.request(config));
+                        }
+                    });
+                });
             }
 
-            originalRequest._isRetry = true;
+            config._isRetry = true;
             isRefreshing = true;
 
             try {
                 const newAccessToken = await refreshAccessToken();
-                if (newAccessToken) {
-                    processQueue(null, newAccessToken);
+                handleQueue(newAccessToken);
 
-                    originalRequest.headers[
+                if (newAccessToken) {
+                    config.headers[
                         "Authorization"
                     ] = `Bearer ${newAccessToken}`;
-                    return apiClient.request(originalRequest);
-                } else {
-                    processQueue(error, null);
-                    throw error;
+                    return apiClient.request(config);
                 }
             } catch (err) {
-                processQueue(err, null);
+                handleQueue(err as Error);
                 throw err;
             } finally {
                 isRefreshing = false;
