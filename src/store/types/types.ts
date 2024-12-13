@@ -51,3 +51,7 @@ export interface IUser {
     password: number;
     roleId: number;
 }
+export interface Tokens {
+    access: string;
+    refresh: string;
+}

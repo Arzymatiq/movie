@@ -1,10 +1,10 @@
-.auth_input {
+.authInput {
     display: flex;
     height: 100vh;
     width: 100%;
     align-items: center;
     justify-content: center;
-    .auth_input_center {
+    .authInputCenter {
         background-color: white;
         width: 600px;
         height: 500px;
@@ -20,7 +20,17 @@
             flex-direction: column;
             width: 80%;
             justify-content: space-between;
-
+            .checkboxWrapper {
+                display: flex;
+                justify-content: start;
+                label {
+                    display: flex;
+                    input {
+                        width: 50px;
+                        height: 25px;
+                    }
+                }
+            }
             input {
                 display: flex;
                 border: none;

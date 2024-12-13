@@ -2,22 +2,22 @@ import { createSlice } from "@reduxjs/toolkit";
 import { IMovie, ISeries } from "../types/types";
 import { getMovie, getSeries } from "./movieAction";
 
-interface IMoviesState {
+interface IPostState {
     movies: IMovie[];
     series: ISeries[];
     loading: boolean;
     error: string | null;
 }
 
-const initialState: IMoviesState = {
+const initialState: IPostState = {
     movies: [],
     series: [],
     loading: false,
     error: null,
 };
 
-const movieSlice = createSlice({
-    name: "movie",
+const postSlice = createSlice({
+    name: "post",
     initialState,
     reducers: {},
     extraReducers: (builder) => {
@@ -46,4 +46,4 @@ const movieSlice = createSlice({
     },
 });
 
-export default movieSlice.reducer;
+export default postSlice.reducer;

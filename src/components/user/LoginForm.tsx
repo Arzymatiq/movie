@@ -2,50 +2,11 @@ import React from "react";
 import { useInput } from "../../hoks/useInput";
 import style from "./logForm.module.scss";
 import { loginFunc } from "../../store/user/userAction";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../store/store";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../store/store";
 import { useNavigate } from "react-router-dom";
 import { useBooleanInput } from "../../hoks/useBooleanInput";
-
-interface InputFieldProps {
-    inputHook: {
-        dirty: boolean;
-        isEmpty: boolean;
-        minLengthError?: boolean;
-        loginError?: boolean;
-        value: string;
-        onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-        onBlur: () => void;
-    };
-    label: string;
-    type: string;
-}
-
-const InputField: React.FC<InputFieldProps> = ({ inputHook, label, type }) => {
-    return (
-        <div>
-            {inputHook.dirty && inputHook.isEmpty && (
-                <div className={style.error}>Поле не может быть пустым</div>
-            )}
-            {inputHook.dirty && inputHook.minLengthError && (
-                <div className={style.error}>
-                    Поле должно быть минимум 4 символа
-                </div>
-            )}
-            {inputHook.dirty && inputHook.loginError && (
-                <div className={style.error}>Введите корректный login</div>
-            )}
-
-            <input
-                onChange={inputHook.onChange}
-                onBlur={inputHook.onBlur}
-                value={inputHook.value}
-                type={type}
-                placeholder={label}
-            />
-        </div>
-    );
-};
+import InputField from "./InputField";
 
 const LoginForm = () => {
     const loginValidation = {
@@ -84,40 +45,37 @@ const LoginForm = () => {
         }
 
         if (isValid) {
-            const loginData = {
-                login: login.value,
-                password: passWord.value,
-                isAgreeToManagmentData: agreeToDataManagement.value,
-            };
             try {
+                const loginData = {
+                    login: login.value,
+                    password: passWord.value,
+                };
                 const action = await dispatch(loginFunc(loginData));
                 if (loginFunc.fulfilled.match(action)) {
                     navigate("/");
                 } else {
-                    alert(action.payload || "Login failed");
+                    alert(action.payload || "Ошибка входа.");
                     login.setValue("");
                     passWord.setValue("");
                 }
             } catch (err) {
-                console.error("Ошибка логина", err);
+                console.error("Ошибка логина:", err);
             }
         }
     };
-    // // console.log(user, loading, error,);
-    // console.log(token);
 
     return (
-        <div className={style.auth_input}>
-            <div className={style.auth_input_center}>
+        <div className={style.authInput}>
+            <div className={style.authInputCenter}>
                 <form onSubmit={handleSubmit}>
-                    <h2>Login</h2>
-                    <InputField inputHook={login} label="Login" type="text" />
+                    <h2>Вход</h2>
+                    <InputField inputHook={login} label="Логин" type="text" />
                     <InputField
                         inputHook={passWord}
-                        label="Password"
+                        label="Пароль"
                         type="password"
                     />
-                    <div>
+                    <div className={style.checkboxWrapper}>
                         <label>
                             <input
                                 type="checkbox"
@@ -128,10 +86,12 @@ const LoginForm = () => {
                                     )
                                 }
                             />
-                            I agree to data management
+                            Я согласен на обработку данных
                         </label>
                     </div>
-                    <button type="submit">Login</button>
+                    <button type="submit" className={style.submitButton}>
+                        Войти
+                    </button>
                 </form>
             </div>
         </div>

@@ -1,28 +1,33 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import style from "./navBar.module.scss";
 import { updateToken } from "../../helpers/function";
 import { logout } from "../../store/user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../store/store";
+import { AppDispatch, RootState } from "../../store/store";
 
 const NavBar = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch<AppDispatch>();
     const [showDropdown, setShowDropdown] = useState(false);
-    const dispatch = useDispatch();
 
-    const token = localStorage.getItem("token");
-    const { error, user } = useSelector((state: RootState) => state.users);
+    const token = useMemo(() => localStorage.getItem("token"), []);
+    const { user } = useSelector((state: RootState) => state.users);
 
     useEffect(() => {
         updateToken();
     }, []);
+
+    const handleNavigate = (path: string) => navigate(path);
+
     return (
         <div className={style.navBar}>
             <div className={style.navBar_center}>
                 <div className={style.navBar_items}>
-                    <button onClick={() => navigate("/")}>фильмы</button>
-                    <button onClick={() => navigate("/series")}>сериалы</button>
+                    <button onClick={() => handleNavigate("/")}>Фильмы</button>
+                    <button onClick={() => handleNavigate("/series")}>
+                        Сериалы
+                    </button>
                 </div>
                 <div
                     className={style.login}
@@ -31,28 +36,33 @@ const NavBar = () => {
                     <button>
                         <img
                             src="https://cdn-icons-png.flaticon.com/512/3276/3276535.png"
-                            alt=""
+                            alt="Аккаунт"
                         />
-                        аккаунт
+                        Аккаунт
                     </button>
                     {showDropdown && (
                         <div className={style.dropdownMenu}>
                             {token ? (
                                 <>
-                                    <p>{user?.fullName}</p>
-                                    <p>{user?.login}</p>
-                                    <a onClick={() => dispatch(logout())}>
+                                    <h3>{user?.fullName || "Гость"}</h3>
+                                    <h3>{user?.login || "Нет логина"}</h3>
+                                    <button onClick={() => dispatch(logout())}>
                                         Выйти
-                                    </a>
+                                    </button>
                                 </>
                             ) : (
                                 <>
                                     <button
-                                        onClick={() => navigate("/register")}>
-                                        регистрация
+                                        onClick={() =>
+                                            handleNavigate("/register")
+                                        }>
+                                        Регистрация
                                     </button>
-                                    <button onClick={() => navigate("/login")}>
-                                        войти
+                                    <button
+                                        onClick={() =>
+                                            handleNavigate("/login")
+                                        }>
+                                        Войти
                                     </button>
                                 </>
                             )}

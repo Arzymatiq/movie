@@ -44,6 +44,7 @@ const userSlice = createSlice({
                 const accessToken = action.payload?.accessToken;
                 const refreshToken = action.payload?.refreshToken;
                 const user = action.payload?.user;
+                // console.log(accessToken, refreshToken, user);
 
                 if (accessToken && refreshToken && user) {
                     state.token = accessToken;

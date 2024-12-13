@@ -1,15 +1,14 @@
 import axios from "axios";
 import { ACCOUNT_API } from "./consts";
-import { Tokens } from "./apiClients";
+import { Tokens } from "../store/types/types";
 import apiClient from "./apiClients";
 
-export const addDataToLocalStorage = (dataToLocalStorage: {
+export const addDataToLocalStorage = (datatoStorage: {
     user: any;
     token: string;
 }) => {
-    console.log(dataToLocalStorage);
-    localStorage.setItem("user", JSON.stringify(dataToLocalStorage.user));
-    localStorage.setItem("token", dataToLocalStorage.token);
+    localStorage.setItem("user", JSON.stringify(datatoStorage.user));
+    localStorage.setItem("token", datatoStorage.token);
 };
 
 export const refreshAccessToken = async () => {

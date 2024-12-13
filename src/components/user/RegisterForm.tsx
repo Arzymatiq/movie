@@ -2,42 +2,15 @@ import React from "react";
 import { useInput } from "../../hoks/useInput";
 import style from "./logForm.module.scss";
 import { register } from "../../store/user/userAction";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../store/store";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../store/store";
 import { useNavigate } from "react-router-dom";
-
-const InputField = ({ inputHook, label, type }: any) => {
-    return (
-        <div>
-            {inputHook.dirty && inputHook.isEmpty ? (
-                <div style={{ color: "red" }}>Поле не может быть пустым</div>
-            ) : inputHook.dirty && inputHook.minLengthError ? (
-                <div style={{ color: "red" }}>
-                    Поле должно быть минимум 4 символа
-                </div>
-            ) : (
-                inputHook.dirty &&
-                inputHook.loginError && (
-                    <div style={{ color: "red" }}>Введите корректный login</div>
-                )
-            )}
-
-            <input
-                onChange={inputHook.onChange}
-                onBlur={inputHook.onBlur}
-                value={inputHook.value}
-                type={type}
-                placeholder={label}
-            />
-        </div>
-    );
-};
+import InputField from "./InputField";
 
 const RegisterForm = () => {
     const loginValidation = {
         isEmpty: true,
         minLength: 4,
-        login: true,
     };
     const fullNameValidation = {
         isEmpty: true,
@@ -51,11 +24,11 @@ const RegisterForm = () => {
     const login = useInput("", loginValidation);
     const passWord = useInput("", passwordValidation);
     const fullName = useInput("", fullNameValidation);
+
     const dispatch = useDispatch<AppDispatch>();
     const navigate = useNavigate();
-    const { error, user } = useSelector((state: RootState) => state.users); // Исправлено
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
         login.setDirty(true);
@@ -71,42 +44,47 @@ const RegisterForm = () => {
             !fullName.minLengthError;
 
         if (isValid) {
-            const registerData = {
-                login: login.value,
-                password: passWord.value,
-                fullName: fullName.value,
-                roleId: 1,
-            };
-            dispatch(register(registerData)).then((action: any) => {
+            try {
+                const registerData = {
+                    login: login.value,
+                    password: passWord.value,
+                    fullName: fullName.value,
+                    roleId: 1,
+                };
+                const action = await dispatch(register(registerData));
                 if (register.fulfilled.match(action)) {
                     navigate("/login");
-                } else if (register.rejected.match(action)) {
-                    alert(action.payload || "Registration failed");
-                    login.setValue(""); // Используем метод сброса
+                } else {
+                    alert(action.payload || "Ошибка регистрации.");
+                    login.setValue("");
                     passWord.setValue("");
                     fullName.setValue("");
                 }
-            });
+            } catch (err) {
+                console.error("Ошибка регистрации:", err);
+            }
         }
     };
 
     return (
-        <div className={style.auth_input}>
-            <div className={style.auth_input_center}>
+        <div className={style.authInput}>
+            <div className={style.authInputCenter}>
                 <form onSubmit={handleSubmit}>
-                    <h2>Register</h2>
-                    <InputField inputHook={login} label="Login" type="text" />
+                    <h2>Регистрация</h2>
+                    <InputField inputHook={login} label="Логин" type="text" />
                     <InputField
                         inputHook={passWord}
-                        label="Password"
+                        label="Пароль"
                         type="password"
                     />
                     <InputField
                         inputHook={fullName}
-                        label="full name"
+                        label="Полное имя"
                         type="text"
                     />
-                    <button type="submit">Register</button>
+                    <button type="submit" className={style.submitButton}>
+                        Зарегистрироваться
+                    </button>
                 </form>
             </div>
         </div>
