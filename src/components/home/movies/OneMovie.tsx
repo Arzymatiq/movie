@@ -1,12 +1,7 @@
 import React, { FC, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+
 import { useParams } from "react-router-dom";
-import {
-    AppDispatch,
-    RootState,
-    useAppDispatch,
-    useAppSelector,
-} from "../../../store/store";
+import { useAppDispatch, useAppSelector } from "../../../store/store";
 import { IMovie } from "../../../store/types/types";
 import { getMovie } from "../../../store/posts/movieAction";
 import style from "../style/moveItem.module.scss";
