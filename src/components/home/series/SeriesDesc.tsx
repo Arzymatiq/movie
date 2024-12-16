@@ -1,26 +1,31 @@
-import React, { FC, useEffect, useMemo } from "react";
+import React, { FC, useMemo } from "react";
 import { useParams } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../../store/store";
-import { getSeries } from "../../../store/posts/movieAction";
+import { useAppSelector } from "../../../store/store";
 import style from "../style/seriesitem.module.scss";
+import { Skeleton } from "@mui/material";
 
 const SeriesDesc: FC = () => {
     const { id } = useParams<string>();
     const { series, loading } = useAppSelector((state) => state.posts);
-    const dispatch = useAppDispatch();
-
-    useEffect(() => {
-        dispatch(getSeries());
-    }, [dispatch]);
 
     const filteredPost = useMemo(() => {
         return series.find((item) => item.id === Number(id));
     }, [series, id]);
+    const renderSkeletons = () =>
+        Array.from({ length: 12 }).map((_, index) => (
+            <Skeleton
+                key={index}
+                sx={{ bgcolor: "grey.900", marginBottom: "1rem" }}
+                variant="rectangular"
+                height={300}
+                className={style.skeletonWrapper}
+            />
+        ));
 
     return (
         <>
             {loading ? (
-                <>loading...</>
+                <div className={style.postlist_center}>{renderSkeletons()}</div>
             ) : (
                 <>
                     {!filteredPost ? (

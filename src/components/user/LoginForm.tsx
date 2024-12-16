@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { useInput } from "../../hoks/useInput";
 import style from "./logForm.module.scss";
 import { loginFunc } from "../../store/user/userAction";
 import { useAppDispatch } from "../../store/store";
 import { useNavigate } from "react-router-dom";
 import { useBooleanInput } from "../../hoks/useBooleanInput";
-import InputField from "./InputField";
+import { InputField } from "./InputField";
+import { CheckboxWithValidation } from "./CheckboxWithValidation";
 
 const LoginForm = () => {
     const loginValidation = {
@@ -15,43 +16,46 @@ const LoginForm = () => {
     };
     const passwordValidation = {
         isEmpty: true,
-        minLength: 4,
+        minLength: 6,
     };
 
     const login = useInput("", loginValidation);
     const passWord = useInput("", passwordValidation);
     const agreeToDataManagement = useBooleanInput(false);
 
+    const [agreeError, setAgreeError] = useState(false);
+
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-
+    const validateForm = () => {
         login.setDirty(true);
         passWord.setDirty(true);
+        setAgreeError(!agreeToDataManagement.value);
 
-        const isValid =
+        return (
             !login.isEmpty &&
             !login.minLengthError &&
             !passWord.isEmpty &&
             !passWord.minLengthError &&
-            agreeToDataManagement.value;
+            agreeToDataManagement.value
+        );
+    };
 
-        if (!agreeToDataManagement.value) {
-            alert("Необходимо согласиться с обработкой данных.");
-            return;
-        }
-
-        if (isValid) {
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (validateForm()) {
             try {
                 const loginData = {
                     login: login.value,
                     password: passWord.value,
+                    isAgreeToManagmentData: agreeToDataManagement.value,
                 };
+
                 const action = await dispatch(loginFunc(loginData));
                 if (loginFunc.fulfilled.match(action)) {
                     navigate("/");
+                    window.location.reload();
                 } else {
                     alert(action.payload || "Ошибка входа.");
                     login.setValue("");
@@ -74,20 +78,11 @@ const LoginForm = () => {
                         label="Пароль"
                         type="password"
                     />
-                    <div className={style.checkboxWrapper}>
-                        <label>
-                            <input
-                                type="checkbox"
-                                checked={agreeToDataManagement.value}
-                                onChange={(e) =>
-                                    agreeToDataManagement.setValue(
-                                        e.target.checked
-                                    )
-                                }
-                            />
-                            Я согласен на обработку данных
-                        </label>
-                    </div>
+                    <CheckboxWithValidation
+                        inputHook={agreeToDataManagement}
+                        label="Согласие на обработку данных"
+                        error={agreeError ? "Необходимо согласие" : ""}
+                    />
                     <button type="submit" className={style.submitButton}>
                         Войти
                     </button>

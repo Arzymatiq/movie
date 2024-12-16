@@ -4,7 +4,7 @@ import style from "./logForm.module.scss";
 import { register } from "../../store/user/userAction";
 import { useAppDispatch } from "../../store/store";
 import { useNavigate } from "react-router-dom";
-import InputField from "./InputField";
+import { InputField } from "./InputField";
 
 const RegisterForm = () => {
     const loginValidation = {

@@ -12,3 +12,11 @@ body {
 ul {
     list-style-type: none;
 }
+input {
+    display: flex;
+    align-items: center;
+    border: none;
+    height: 25px;
+    border-radius: 15px;
+    padding-left: 20px;
+}

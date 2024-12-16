@@ -26,7 +26,11 @@ export const register = createAsyncThunk(
 export const loginFunc = createAsyncThunk(
     "user/loginFunc",
     async (
-        loginData: { login: string; password: string },
+        loginData: {
+            login: string;
+            password: string;
+            isAgreeToManagmentData: boolean;
+        },
         { rejectWithValue }
     ) => {
         try {
@@ -35,6 +39,8 @@ export const loginFunc = createAsyncThunk(
                 loginData
             );
             console.log("Login API response:", response.data);
+            console.log(loginData);
+
             return response.data;
         } catch (error: any) {
             return rejectWithValue(

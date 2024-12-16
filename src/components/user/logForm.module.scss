@@ -21,6 +21,7 @@
             width: 80%;
             justify-content: space-between;
             .checkboxWrapper {
+                position: relative;
                 display: flex;
                 justify-content: start;
                 label {
@@ -29,6 +30,9 @@
                         width: 50px;
                         height: 25px;
                     }
+                }
+                .errorText {
+                    color: red;
                 }
             }
             input {

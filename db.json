@@ -998,6 +998,201 @@
             ],
             "description": "A group of kids discover a series of supernatural mysteries in their small town, unraveling government secrets and battling strange forces.",
             "Age_limit": 16
+        },
+        {
+            "id": 4,
+            "title": "the witcher",
+            "image": "https://image.api.playstation.com/vulcan/ap/rnd/202211/0711/qezXTVn1ExqBjVjR5Ipm97IK.png",
+            "grade": 8.2,
+            "series": [
+                {
+                    "id": 1,
+                    "series_image": "https://upload.wikimedia.org/wikipedia/ru/a/a4/Witcher_and_Renfri.jpg",
+                    "title": "the end's beginning",
+                    "description": "Geralt of Rivia battles a monstrous creature while facing prejudice from humans in a divided land.",
+                    "date": {
+                        "day": 20,
+                        "month": "December",
+                        "year": 2019
+                    }
+                },
+                {
+                    "id": 2,
+                    "series_image": "https://ss.sport-express.ru/userfiles/materials/207/2070979/volga.jpg",
+                    "title": "four marks",
+                    "description": "Yennefer’s tragic past unfolds while Geralt encounters a cursed nobleman in his latest contract.",
+                    "date": {
+                        "day": 20,
+                        "month": "December",
+                        "year": 2019
+                    }
+                },
+                {
+                    "id": 3,
+                    "series_image": "https://witchergid.ru/wp-content/uploads/2019/12/witcher-s1e2-1.jpg",
+                    "title": "betrayer moon",
+                    "description": "Geralt investigates a beast terrorizing a kingdom, while Yennefer endures brutal magical training.",
+                    "date": {
+                        "day": 20,
+                        "month": "December",
+                        "year": 2019
+                    }
+                },
+                {
+                    "id": 4,
+                    "series_image": "https://witchergid.ru/wp-content/uploads/2019/12/vedmak-s1e3-1.jpg",
+                    "title": "of banquets, bastards, and burials",
+                    "description": "Geralt attends a royal feast, facing danger as secrets and betrayal surface.",
+                    "date": {
+                        "day": 20,
+                        "month": "December",
+                        "year": 2019
+                    }
+                },
+                {
+                    "id": 5,
+                    "series_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEZpyoK375wQW0heOygVTGiIt3t1fWKLOTkg&s",
+                    "title": "bottled appetites",
+                    "description": "A djinn's powers force Geralt and Yennefer into an uneasy alliance with dangerous consequences.",
+                    "date": {
+                        "day": 20,
+                        "month": "December",
+                        "year": 2019
+                    }
+                }
+            ],
+            "description": "A mutated monster-hunter for hire, Geralt of Rivia, struggles to find his place in a world where people often prove more wicked than beasts.",
+            "Age_limit": 18
+        },
+        {
+            "id": 6,
+            "title": "the mandalorian",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSWXstcVQFblRLxiK7SzwvYl7Mp2-dDqMpTQ&s",
+            "grade": 8.7,
+            "series": [
+                {
+                    "id": 1,
+                    "series_image": "https://media.myshows.me/episodes/760/9/62/9622d89962b79f92e385ba1fb7f9d170.jpg",
+                    "title": "chapter 1: the mandalorian",
+                    "description": "A lone bounty hunter accepts a mysterious assignment from a high-paying client.",
+                    "date": {
+                        "day": 12,
+                        "month": "November",
+                        "year": 2019
+                    }
+                },
+                {
+                    "id": 2,
+                    "series_image": "https://static.hdrezka.ac/i/2022/11/28/z906758acfac6lb23s42p.jpg",
+                    "title": "chapter 2: the child",
+                    "description": "The Mandalorian must secure valuable cargo while dealing with relentless enemies.",
+                    "date": {
+                        "day": 15,
+                        "month": "November",
+                        "year": 2019
+                    }
+                },
+                {
+                    "id": 3,
+                    "series_image": "https://media.myshows.me/episodes/760/9/51/9514ba0e86a478e6dc38ffd1d8347752.jpg",
+                    "title": "chapter 3: the sin",
+                    "description": "Faced with a moral dilemma, the Mandalorian makes a risky decision that changes everything.",
+                    "date": {
+                        "day": 22,
+                        "month": "November",
+                        "year": 2019
+                    }
+                },
+                {
+                    "id": 4,
+                    "series_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRN7LTvNAEI-wEUhO07FDZFDZs84Vouilc_sQ&s",
+                    "title": "chapter 4: sanctuary",
+                    "description": "Seeking refuge, the Mandalorian finds himself defending a village from raiders.",
+                    "date": {
+                        "day": 29,
+                        "month": "November",
+                        "year": 2019
+                    }
+                },
+                {
+                    "id": 5,
+                    "series_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfqDj2V71UDZPX8CsAF8yLZJFG3c1Ik7Rc7g&s",
+                    "title": "chapter 5: the gunslinger",
+                    "description": "The Mandalorian teams up with a rookie bounty hunter for a dangerous mission.",
+                    "date": {
+                        "day": 6,
+                        "month": "December",
+                        "year": 2019
+                    }
+                }
+            ],
+            "description": "A lone Mandalorian bounty hunter navigates the outer reaches of the galaxy, facing dangerous foes and unexpected allies.",
+            "Age_limit": 14
+        },
+        {
+            "id": 7,
+            "title": "the boys",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4-dkLNmdpZiOPVRYjSe4tjIqimBgljfi8iA&s",
+            "grade": 8.8,
+            "series": [
+                {
+                    "id": 1,
+                    "series_image": "https://i.ytimg.com/vi/nQIiqHi-bBM/maxresdefault.jpg",
+                    "title": "the name of the game",
+                    "description": "Hughie suffers a devastating loss at the hands of super-powered individuals and is recruited by Billy Butcher to take them down.",
+                    "date": {
+                        "day": 26,
+                        "month": "July",
+                        "year": 2019
+                    }
+                },
+                {
+                    "id": 2,
+                    "series_image": "https://media.giphy.com/media/RkN22Lk7n7VWs0UYgp/giphy.gif",
+                    "title": "cherry",
+                    "description": "Billy, Hughie, and the team set their sights on uncovering the dark secrets behind the world's most popular superheroes.",
+                    "date": {
+                        "day": 26,
+                        "month": "July",
+                        "year": 2019
+                    }
+                },
+                {
+                    "id": 3,
+                    "series_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkMuIVzzO4tZGnmeJEfyjWZjQEZDB0q3E-7w&s",
+                    "title": "get some",
+                    "description": "As Hughie and Starlight grow closer, the team finds a lead that could expose the superheroes' corruption.",
+                    "date": {
+                        "day": 26,
+                        "month": "July",
+                        "year": 2019
+                    }
+                },
+                {
+                    "id": 4,
+                    "series_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAqmabLQ_ICgni4nRIZty4HXxLbm-TGblZoA&s",
+                    "title": "the female of the species",
+                    "description": "The Boys encounter a mysterious woman who could shift the balance in their fight against the supers.",
+                    "date": {
+                        "day": 26,
+                        "month": "July",
+                        "year": 2019
+                    }
+                },
+                {
+                    "id": 5,
+                    "series_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4qW1bZacijl1bwbTDznJYIFqQ2Fq4CZNAA2IctEhVHTljF3CypFyaSiJ2G39iVucCqGk&usqp=CAU",
+                    "title": "good for the soul",
+                    "description": "While tensions rise within The Seven, The Boys make a bold move that could expose the superheroes’ darkest secrets.",
+                    "date": {
+                        "day": 26,
+                        "month": "July",
+                        "year": 2019
+                    }
+                }
+            ],
+            "description": "In a world where superheroes abuse their powers, a group of vigilantes sets out to take them down and expose their corruption.",
+            "Age_limit": 18
         }
     ]
 }

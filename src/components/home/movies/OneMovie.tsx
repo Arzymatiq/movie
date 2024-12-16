@@ -1,20 +1,14 @@
 import React, { FC, useEffect } from "react";
 
 import { useParams } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "../../../store/store";
+import { useAppSelector } from "../../../store/store";
 import { IMovie } from "../../../store/types/types";
-import { getMovie } from "../../../store/posts/movieAction";
 import style from "../style/moveItem.module.scss";
 
 const OneMovie: FC = () => {
     const { id } = useParams<string>();
-    const dispatch = useAppDispatch();
 
     const { movies, loading } = useAppSelector((state) => state.posts);
-
-    useEffect(() => {
-        dispatch(getMovie());
-    }, [dispatch]);
 
     const filteredPost: IMovie | undefined = movies.find(
         (item) => item.id === Number(id)

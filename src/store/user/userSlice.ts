@@ -11,7 +11,7 @@ interface AuthState {
 }
 
 const initialState: AuthState = {
-    user: null,
+    user: JSON.parse(localStorage.getItem("user") || "null"),
     token: localStorage.getItem("token") || null,
     loading: false,
     error: null,
@@ -26,6 +26,9 @@ const userSlice = createSlice({
             state.token = null;
             localStorage.removeItem("user");
             localStorage.removeItem("token");
+        },
+        setUser: (state, action) => {
+            state.user = action.payload;
         },
     },
     extraReducers: (builder) => {
@@ -44,7 +47,6 @@ const userSlice = createSlice({
                 const accessToken = action.payload?.accessToken;
                 const refreshToken = action.payload?.refreshToken;
                 const user = action.payload?.user;
-                // console.log(accessToken, refreshToken, user);
 
                 if (accessToken && refreshToken && user) {
                     state.token = accessToken;
@@ -62,7 +64,6 @@ const userSlice = createSlice({
                     console.error("Unexpected response:", action.payload);
                 }
             })
-
             .addCase(register.pending, (state) => {
                 state.loading = true;
                 state.error = null;
@@ -78,5 +79,5 @@ const userSlice = createSlice({
     },
 });
 
-export const { logout } = userSlice.actions;
+export const { logout, setUser } = userSlice.actions;
 export default userSlice.reducer;

@@ -18,6 +18,10 @@ const NavBar = () => {
     }, []);
 
     const handleNavigate = (path: string) => navigate(path);
+    const logOut = () => {
+        dispatch(logout());
+        window.location.reload();
+    };
 
     return (
         <div className={style.navBar}>
@@ -45,16 +49,16 @@ const NavBar = () => {
                                 <>
                                     <h3>{user?.fullName || "Гость"}</h3>
                                     <h3>{user?.login || "Нет логина"}</h3>
-                                    <button onClick={() => dispatch(logout())}>
+                                    <button onClick={() => logOut()}>
                                         Выйти
                                     </button>
                                 </>
                             ) : (
                                 <>
                                     <button
-                                        onClick={() =>
-                                            handleNavigate("/register")
-                                        }>
+                                        onClick={() => {
+                                            handleNavigate("/register");
+                                        }}>
                                         Регистрация
                                     </button>
                                     <button

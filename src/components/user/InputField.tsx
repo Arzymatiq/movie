@@ -1,5 +1,5 @@
-import React from "react";
-import style from "./logForm.module.scss";
+import { red } from "@mui/material/colors";
+import React, { FC } from "react";
 
 interface InputFieldProps {
     inputHook: {
@@ -15,21 +15,31 @@ interface InputFieldProps {
     type: string;
 }
 
-const InputField: React.FC<InputFieldProps> = ({ inputHook, label, type }) => {
-    return (
-        <div>
-            {inputHook.dirty && inputHook.isEmpty && (
-                <div className={style.error}>Поле не может быть пустым</div>
-            )}
-            {inputHook.dirty && inputHook.minLengthError && (
-                <div className={style.error}>
+export const InputField: FC<InputFieldProps> = ({ inputHook, label, type }) => {
+    const getErrorMessage = () => {
+        if (inputHook.dirty && inputHook.isEmpty) {
+            return (
+                <div style={{ color: "red" }}>Поле не может быть пустым</div>
+            );
+        }
+        if (inputHook.dirty && inputHook.minLengthError) {
+            return (
+                <div style={{ color: "red" }}>
                     Поле должно быть минимум 4 символа
                 </div>
-            )}
-            {inputHook.dirty && inputHook.loginError && (
-                <div className={style.error}>Введите корректный login</div>
-            )}
+            );
+        }
+        if (inputHook.dirty && inputHook.loginError) {
+            return <div style={{ color: "red" }}>Введите корректный login</div>;
+        }
+        return null;
+    };
 
+    const errorMessage = getErrorMessage();
+
+    return (
+        <div>
+            {errorMessage && <div>{errorMessage}</div>}
             <input
                 onChange={inputHook.onChange}
                 onBlur={inputHook.onBlur}
@@ -40,4 +50,3 @@ const InputField: React.FC<InputFieldProps> = ({ inputHook, label, type }) => {
         </div>
     );
 };
-export default InputField;
