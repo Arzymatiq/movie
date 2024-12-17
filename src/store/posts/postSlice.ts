@@ -7,9 +7,10 @@ interface ProductState {
     series: ISeries[];
     currentPage: number;
     totalPages: number;
+    itemsPerPage: number;
     currentPage_series: number;
     totalPages_series: number;
-    currentCategory: string | null; // Для фильтрации
+    currentCategory: string | null;
     search: string;
     loading: boolean;
     error: string;
@@ -20,7 +21,7 @@ const initialState: ProductState = {
     series: [],
     currentPage: 1,
     totalPages: 0,
-
+    itemsPerPage: 12, // Количество элементов на странице
     currentPage_series: 1,
     totalPages_series: 0,
     currentCategory: null,
@@ -42,7 +43,11 @@ const productsSlice = createSlice({
         setCategory: (state, action) => {
             state.currentCategory = action.payload;
         },
+        setItemsPerPage: (state, action) => {
+            state.itemsPerPage = action.payload;
+        },
     },
+
     extraReducers: (builder) => {
         builder
             .addCase(getMovie.pending, (state) => {
@@ -72,5 +77,6 @@ const productsSlice = createSlice({
     },
 });
 
-export const { changePage, setSearch, setCategory } = productsSlice.actions;
+export const { changePage, setSearch, setCategory, setItemsPerPage } =
+    productsSlice.actions;
 export default productsSlice.reducer;

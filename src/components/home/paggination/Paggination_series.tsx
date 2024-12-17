@@ -8,13 +8,12 @@ import { RootState, useAppDispatch } from "../../../store/store";
 
 const Paggination: React.FC = () => {
     const dispatch = useAppDispatch();
-    const { currentPage_series, totalPages_series, search } = useSelector(
-        (state: RootState) => state.posts
-    );
+    const { currentPage_series, totalPages_series, search, itemsPerPage } =
+        useSelector((state: RootState) => state.posts);
 
     const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
         dispatch(changePage({ page: value }));
-        dispatch(getSeries({ search, currentPage_series: value }));
+        dispatch(getMovie({ search, currentPage: value, itemsPerPage }));
     };
 
     return (
