@@ -28,7 +28,6 @@ const SeriesList: FC = () => {
     const navigate = useNavigate();
     const [searchParams, setSearchParams] = useSearchParams();
 
-    // 1. Инициализация из URL
     useEffect(() => {
         const urlPage = searchParams.get("page") || "1";
         const urlSearch = searchParams.get("search") || "";
@@ -39,12 +38,10 @@ const SeriesList: FC = () => {
         dispatch(setItemsPerPage(Number(urlItemsPerPage)));
     }, [dispatch, searchParams]);
 
-    // 2. Загрузка данных
     useEffect(() => {
         dispatch(getSeries({ search, currentPage_series, itemsPerPage }));
     }, [dispatch, search, currentPage_series, itemsPerPage]);
 
-    // 3. Обновление URL
     useEffect(() => {
         setSearchParams({
             page: currentPage_series.toString(),

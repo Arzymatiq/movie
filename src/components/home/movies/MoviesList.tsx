@@ -28,7 +28,6 @@ const MoviesList: FC = () => {
     const navigate = useNavigate();
     const [searchParams, setSearchParams] = useSearchParams();
 
-    // 1. Инициализация из URL
     useEffect(() => {
         const urlPage = searchParams.get("page") || "1";
         const urlSearch = searchParams.get("search") || "";
@@ -38,13 +37,10 @@ const MoviesList: FC = () => {
         dispatch(setSearch(urlSearch));
         dispatch(setItemsPerPage(Number(urlItemsPerPage)));
     }, [dispatch, searchParams]);
-
-    // 2. Загрузка данных
     useEffect(() => {
         dispatch(getMovie({ search, currentPage, itemsPerPage }));
     }, [dispatch, search, currentPage, itemsPerPage]);
 
-    // 3. Обновление URL
     useEffect(() => {
         setSearchParams({
             page: currentPage.toString(),
