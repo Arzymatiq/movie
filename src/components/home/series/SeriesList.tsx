@@ -29,9 +29,10 @@ const SeriesList: FC = () => {
     const [searchParams, setSearchParams] = useSearchParams();
 
     useEffect(() => {
-        const urlPage = searchParams.get("page") || "1";
-        const urlSearch = searchParams.get("search") || "";
-        const urlItemsPerPage = searchParams.get("itemsPerPage") || "12";
+        const urlPage: string | undefined = searchParams.get("page") || "1";
+        const urlSearch: string | undefined = searchParams.get("search") || "";
+        const urlItemsPerPage: string | undefined =
+            searchParams.get("itemsPerPage") || "12";
 
         dispatch(changePage({ page: Number(urlPage) }));
         dispatch(setSearch(urlSearch));
@@ -55,7 +56,7 @@ const SeriesList: FC = () => {
 
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         dispatch(setSearch(e.target.value));
-        dispatch(changePage({ page: 1 })); // Сброс на первую страницу
+        dispatch(changePage({ page: 1 }));
     };
 
     const handlePageChange = (_: React.ChangeEvent<unknown>, page: number) => {
@@ -67,7 +68,7 @@ const SeriesList: FC = () => {
     ) => {
         const newItemsPerPage = Number(e.target.value) || 12;
         dispatch(setItemsPerPage(newItemsPerPage));
-        dispatch(changePage({ page: 1 })); // Сброс на первую страницу
+        dispatch(changePage({ page: 1 }));
     };
     const renderSkeletons = () =>
         Array.from({ length: itemsPerPage }).map((_, index) => (

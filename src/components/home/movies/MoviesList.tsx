@@ -13,7 +13,9 @@ import { Pagination, Skeleton, TextField } from "@mui/material";
 
 const MoviesList: FC = () => {
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
     const [hoveredPost, setHoveredPost] = useState<number | null>(null);
+    const [searchParams, setSearchParams] = useSearchParams();
 
     const {
         movies,
@@ -25,26 +27,32 @@ const MoviesList: FC = () => {
         itemsPerPage,
     } = useAppSelector((state) => state.posts);
 
-    const navigate = useNavigate();
-    const [searchParams, setSearchParams] = useSearchParams();
-
     useEffect(() => {
-        const urlPage = searchParams.get("page") || "1";
+        const urlPage = Number(searchParams.get("page")) || 1;
         const urlSearch = searchParams.get("search") || "";
-        const urlItemsPerPage = searchParams.get("itemsPerPage") || "12";
+        const urlItemsPerPage = Number(searchParams.get("itemsPerPage")) || 12;
 
-        dispatch(changePage({ page: Number(urlPage) }));
+        dispatch(changePage({ page: urlPage }));
         dispatch(setSearch(urlSearch));
-        dispatch(setItemsPerPage(Number(urlItemsPerPage)));
+        dispatch(setItemsPerPage(urlItemsPerPage));
     }, [dispatch, searchParams]);
+
     useEffect(() => {
         dispatch(getMovie({ search, currentPage, itemsPerPage }));
     }, [dispatch, search, currentPage, itemsPerPage]);
 
+    const handleItemsPerPageChange = (
+        e: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        const newItemsPerPage = Number(e.target.value) || 12;
+        dispatch(setItemsPerPage(newItemsPerPage));
+        dispatch(changePage({ page: 1 }));
+    };
+
     useEffect(() => {
         setSearchParams({
             page: currentPage.toString(),
-            search: search,
+            search,
             itemsPerPage: itemsPerPage.toString(),
         });
     }, [currentPage, search, itemsPerPage, setSearchParams]);
@@ -54,31 +62,21 @@ const MoviesList: FC = () => {
 
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         dispatch(setSearch(e.target.value));
-        dispatch(changePage({ page: 1 })); // Сброс на первую страницу
-    };
-
-    const handlePageChange = (_: React.ChangeEvent<unknown>, page: number) => {
-        dispatch(changePage({ page }));
-    };
-
-    const handleItemsPerPageChange = (
-        e: React.ChangeEvent<HTMLInputElement>
-    ) => {
-        const newItemsPerPage = Number(e.target.value) || 12;
-        dispatch(setItemsPerPage(newItemsPerPage));
-        dispatch(changePage({ page: 1 })); // Сброс на первую страницу
+        dispatch(changePage({ page: 1 }));
     };
 
     const renderSkeletons = () =>
         Array.from({ length: itemsPerPage }).map((_, index) => (
             <Skeleton
                 key={index}
-                sx={{ bgcolor: "grey.900", marginBottom: "1rem" }}
                 variant="rectangular"
                 height={240}
                 className={style.skeletonWrapper}
             />
         ));
+    const handlePageChange = (_: React.ChangeEvent<unknown>, page: number) => {
+        dispatch(changePage({ page }));
+    };
 
     return (
         <div className={style.postlist}>

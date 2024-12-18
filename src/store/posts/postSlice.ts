@@ -1,10 +1,14 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { getMovie, getSeries } from "./postAction";
+import { createSlice, isAnyOf, PayloadAction } from "@reduxjs/toolkit";
+import { getMovie, getOneMovie, getOneSeries, getSeries } from "./postAction";
 import { IMovie, ISeries } from "../types/types";
 
 interface ProductState {
     movies: IMovie[];
+    oneMovie: IMovie | null;
+
     series: ISeries[];
+    oneSeries: ISeries | null;
+
     currentPage: number;
     totalPages: number;
     itemsPerPage: number;
@@ -18,10 +22,14 @@ interface ProductState {
 
 const initialState: ProductState = {
     movies: [],
+    oneMovie: null,
+
     series: [],
+    oneSeries: null,
+
     currentPage: 1,
     totalPages: 0,
-    itemsPerPage: 12, // Количество элементов на странице
+    itemsPerPage: 12,
     currentPage_series: 1,
     totalPages_series: 0,
     currentCategory: null,
@@ -73,6 +81,34 @@ const productsSlice = createSlice({
             .addCase(getSeries.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message || "Ошибка загрузки данных";
+            })
+            .addCase(getOneMovie.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(
+                getOneMovie.fulfilled,
+                (state, action: PayloadAction<IMovie>) => {
+                    state.loading = false;
+                    state.oneMovie = action.payload;
+                }
+            )
+            .addCase(getOneMovie.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload as string;
+            })
+            .addCase(getOneSeries.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(
+                getOneSeries.fulfilled,
+                (state, action: PayloadAction<ISeries>) => {
+                    state.loading = false;
+                    state.oneSeries = action.payload;
+                }
+            )
+            .addCase(getOneSeries.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload as string;
             });
     },
 });

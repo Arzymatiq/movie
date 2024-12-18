@@ -22,6 +22,29 @@ const getTotalPages = async (
     return Math.ceil(res.data.length / itemsPerPage);
 };
 
+export const getOneMovie = createAsyncThunk<IMovie, string>(
+    "products/getOneMovie",
+    async (id: string, { rejectWithValue }) => {
+        try {
+            const response = await axios.get(`${post_api}/movies/${id}`);
+            return response.data as IMovie;
+        } catch (error) {
+            return rejectWithValue("Failed to fetch movie data");
+        }
+    }
+);
+export const getOneSeries = createAsyncThunk<ISeries, string>(
+    "products/getOneSeries",
+    async (id: string, { rejectWithValue }) => {
+        try {
+            const response = await axios.get(`${post_api}/series/${id}`);
+            return response.data as ISeries;
+        } catch (error) {
+            return rejectWithValue("Failed to load series");
+        }
+    }
+);
+
 export const getMovie = createAsyncThunk<
     GetMovieResponse,
     { search: string; currentPage: number; itemsPerPage: number },
