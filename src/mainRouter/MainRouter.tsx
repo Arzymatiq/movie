@@ -1,50 +1,44 @@
-import { Route, Routes } from "react-router-dom";
-import MoviesList from "../components/home/movies/MoviesList";
-import OneMovie from "../components/home/movies/OneMovie";
-import SeriesList from "../components/home/series/SeriesList";
-import SeriesDesc from "../components/home/series/SeriesDesc";
-import RegisterForm from "../components/user/RegisterForm";
-import LoginForm from "../components/user/LoginForm";
+import {
+    createBrowserRouter,
+    createRoutesFromElements,
+    Route,
+    RouterProvider,
+} from "react-router-dom";
+import React, { Suspense, lazy } from "react";
+import Layout from "../components/layOut/Layout";
+
+const MoviesList = lazy(() => import("../components/home/movies/MoviesList"));
+const OneMovie = lazy(() => import("../components/home/movies/OneMovie"));
+const SeriesList = lazy(() => import("../components/home/series/SeriesList"));
+const SeriesDesc = lazy(() => import("../components/home/series/SeriesDesc"));
+const RegisterForm = lazy(() => import("../components/user/RegisterForm"));
+const LoginForm = lazy(() => import("../components/user/LoginForm"));
+
+const ROUTES = [
+    { id: 1, path: "/", element: <MoviesList /> },
+    { id: 2, path: "/register", element: <RegisterForm /> },
+    { id: 3, path: "/login", element: <LoginForm /> },
+    { id: 4, path: "/movie/:id", element: <OneMovie /> },
+    { id: 5, path: "/series", element: <SeriesList /> },
+    { id: 6, path: "/series/:id", element: <SeriesDesc /> },
+];
 
 const MainRouter = () => {
-    const ROUTES = [
-        {
-            id: 1,
-            path: "/",
-            element: <MoviesList />,
-        },
-        {
-            id: 2,
-            path: "/register",
-            element: <RegisterForm />,
-        },
-        {
-            id: 3,
-            path: "/login",
-            element: <LoginForm />,
-        },
-        {
-            id: 4,
-            path: "/movie/:id",
-            element: <OneMovie />,
-        },
-        {
-            id: 5,
-            path: "/series",
-            element: <SeriesList />,
-        },
-        {
-            id: 6,
-            path: "/series/:id",
-            element: <SeriesDesc />,
-        },
-    ];
+    const router = createBrowserRouter(
+        createRoutesFromElements(
+            <Route path="/" element={<Layout />}>
+                {ROUTES.map(({ id, path, element }) => (
+                    <Route key={id} path={path} element={element} />
+                ))}
+                <Route path="*" element={<div>Page Not Found</div>} />
+            </Route>
+        )
+    );
+
     return (
-        <Routes>
-            {ROUTES.map((item) => (
-                <Route path={item.path} key={item.id} element={item.element} />
-            ))}
-        </Routes>
+        <Suspense fallback={<div>Loading...</div>}>
+            <RouterProvider router={router} />
+        </Suspense>
     );
 };
 

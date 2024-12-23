@@ -1,4 +1,4 @@
-import { createSlice, isAnyOf, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { getMovie, getOneMovie, getOneSeries, getSeries } from "./postAction";
 import { IMovie, ISeries } from "../types/types";
 
@@ -12,8 +12,6 @@ interface ProductState {
     currentPage: number;
     totalPages: number;
     itemsPerPage: number;
-    currentPage_series: number;
-    totalPages_series: number;
     currentCategory: string | null;
     search: string;
     loading: boolean;
@@ -30,8 +28,6 @@ const initialState: ProductState = {
     currentPage: 1,
     totalPages: 0,
     itemsPerPage: 12,
-    currentPage_series: 1,
-    totalPages_series: 0,
     currentCategory: null,
     search: "",
     loading: false,
@@ -75,7 +71,7 @@ const productsSlice = createSlice({
             })
             .addCase(getSeries.fulfilled, (state, action) => {
                 state.series = action.payload.res;
-                state.totalPages_series = action.payload.totalPages;
+                state.totalPages = action.payload.totalPages;
                 state.loading = false;
             })
             .addCase(getSeries.rejected, (state, action) => {

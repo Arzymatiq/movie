@@ -72,28 +72,25 @@ export const getMovie = createAsyncThunk<
 
 export const getSeries = createAsyncThunk<
     GetSeriesResponse,
-    { search: string; currentPage_series: number; itemsPerPage: number },
+    { search: string; currentPage: number; itemsPerPage: number },
     { state: RootState }
->(
-    "products/getSeries",
-    async ({ search, currentPage_series, itemsPerPage }) => {
-        const searchParams = `q=${search}`;
-        const paginationParams = `_start=${
-            (currentPage_series - 1) * itemsPerPage
-        }&_limit=${itemsPerPage}`;
+>("products/getSeries", async ({ search, currentPage, itemsPerPage }) => {
+    const searchParams = `q=${search}`;
+    const paginationParams = `_start=${
+        (currentPage - 1) * itemsPerPage
+    }&_limit=${itemsPerPage}`;
 
-        const totalItems = await getTotalPages(
-            `${post_api}/series?${searchParams}`,
-            itemsPerPage
-        );
+    const totalItems = await getTotalPages(
+        `${post_api}/series?${searchParams}`,
+        itemsPerPage
+    );
 
-        const res = await axios.get<ISeries[]>(
-            `${post_api}/series?${paginationParams}&${searchParams}`
-        );
+    const res = await axios.get<ISeries[]>(
+        `${post_api}/series?${paginationParams}&${searchParams}`
+    );
 
-        return {
-            res: res.data,
-            totalPages: totalItems,
-        };
-    }
-);
+    return {
+        res: res.data,
+        totalPages: totalItems,
+    };
+});
