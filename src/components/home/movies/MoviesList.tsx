@@ -19,6 +19,7 @@ const MoviesList: FC = () => {
         <PostList<IMovie>
             item={movies}
             renderItem={(post) => <MoviesItem post={post} key={post.id} />}
+            toNav="movie"
         />
     );
 };

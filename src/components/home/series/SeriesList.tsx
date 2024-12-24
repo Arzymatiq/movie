@@ -19,6 +19,7 @@ const SeriesList: FC = () => {
         <PostList<ISeries>
             item={series}
             renderItem={(post) => <SeriesItem post={post} key={post.id} />}
+            toNav="series"
         />
     );
 };

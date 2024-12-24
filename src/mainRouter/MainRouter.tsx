@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import React, { Suspense, lazy } from "react";
 import Layout from "../components/layOut/Layout";
+import Error from "../components/error/Error";
 
 const MoviesList = lazy(() => import("../components/home/movies/MoviesList"));
 const OneMovie = lazy(() => import("../components/home/movies/OneMovie"));
@@ -30,7 +31,7 @@ const MainRouter = () => {
                 {ROUTES.map(({ id, path, element }) => (
                     <Route key={id} path={path} element={element} />
                 ))}
-                <Route path="*" element={<div>Page Not Found</div>} />
+                <Route path="*" element={<Error />} />
             </Route>
         )
     );

@@ -1,4 +1,3 @@
-// Импорт необходимых модулей
 import { Pagination, Skeleton, TextField } from "@mui/material";
 import React, { ReactNode, useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../store/store";
@@ -20,8 +19,8 @@ interface BasePost {
 interface ListProps<T extends BasePost> {
     item: T[];
     renderItem: (item: T) => ReactNode;
+    toNav?: string;
 }
-
 export default function PostList<T extends BasePost>(props: ListProps<T>) {
     const [searchParams, setSearchParams] = useSearchParams();
     const dispatch = useAppDispatch();
@@ -80,7 +79,6 @@ export default function PostList<T extends BasePost>(props: ListProps<T>) {
     return (
         <div>
             <div className={style.postlist}>
-                <h1>Movies</h1>
                 <div className={style.filters}>
                     <input
                         type="text"
@@ -134,7 +132,9 @@ export default function PostList<T extends BasePost>(props: ListProps<T>) {
                             <div
                                 key={post.id}
                                 className={style.postItem}
-                                onClick={() => navigate(`/movie/${post.id}`)}
+                                onClick={() =>
+                                    navigate(`/${props.toNav}/${post.id}`)
+                                }
                                 onMouseEnter={() => handleMouseEnter(post.id)}
                                 onMouseLeave={handleMouseLeave}>
                                 {props.renderItem(post)}
