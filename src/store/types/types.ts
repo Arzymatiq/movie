@@ -11,19 +11,13 @@ export interface UserObj {
     image: any;
 }
 
-export interface IDate {
-    day: number;
-    month: string;
-    year: number;
-}
-
 export interface IMovie {
     id: number;
     title: string;
     image_desc: string;
     image: string;
     grade: number;
-    date: IDate;
+    date: Date;
     author: string;
     description: string;
     Age_limit: number;
@@ -33,7 +27,7 @@ export interface Iseries {
     id: number;
     title: string;
     description: string;
-    date: IDate;
+    date: Date;
     series_image: string;
 }
 export interface ISeries {
@@ -54,4 +48,7 @@ export interface IUser {
 export interface Tokens {
     access: string;
     refresh: string;
+}
+export interface Read {
+    read(url: string): void;
 }
