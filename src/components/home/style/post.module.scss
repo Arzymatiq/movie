@@ -33,15 +33,23 @@
             color: white;
         }
     }
+    .loading {
+        width: 80%;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+
+        .skeletonWrapper {
+            position: relative;
+            border-radius: 15px;
+            background-color: rgb(125, 125, 125);
+        }
+    }
     .postlist_center {
         width: 80%;
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
         gap: 20px;
-        .skeletonWrapper {
-            position: relative;
-            border-radius: 15px;
-        }
         .postItem {
             position: relative;
 

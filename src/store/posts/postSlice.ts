@@ -1,114 +1,110 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { getMovie, getOneMovie, getOneSeries, getSeries } from "./postAction";
-import { IMovie, ISeries } from "../types/types";
+import { IMovie, ISeries, IActors } from "../types/types";
 
-interface ProductState {
+interface PostState {
     movies: IMovie[];
-    oneMovie: IMovie | null;
-
     series: ISeries[];
-    oneSeries: ISeries | null;
-
-    currentPage: number;
-    totalPages: number;
-    itemsPerPage: number;
-    currentCategory: string | null;
-    search: string;
+    total_pages: number;
     loading: boolean;
-    error: string;
+    error: string | null;
+    oneMovie: IMovie | null;
+    movieActor: IActors[] | null;
+    oneSeries: ISeries | null;
+    lastRequestId: string | null;
 }
 
-const initialState: ProductState = {
+const initialState: PostState = {
     movies: [],
-    oneMovie: null,
-
     series: [],
-    oneSeries: null,
-
-    currentPage: 1,
-    totalPages: 0,
-    itemsPerPage: 12,
-    currentCategory: null,
-    search: "",
+    total_pages: 1,
     loading: false,
-    error: "",
+    error: null,
+    oneMovie: null,
+    movieActor: [],
+    oneSeries: null,
+    lastRequestId: null,
 };
 
-const productsSlice = createSlice({
-    name: "products",
+const postSlice = createSlice({
+    name: "posts",
     initialState,
     reducers: {
-        changePage: (state, action) => {
-            state.currentPage = action.payload.page;
+        clearPost: (state) => {
+            state.oneMovie = null;
+            state.oneSeries = null;
         },
-        setSearch: (state, action) => {
-            state.search = action.payload;
-        },
-        setCategory: (state, action) => {
-            state.currentCategory = action.payload;
-        },
-        setItemsPerPage: (state, action) => {
-            state.itemsPerPage = action.payload;
+        clearTotalPages: (state) => {
+            state.total_pages = 0;
         },
     },
-
     extraReducers: (builder) => {
         builder
-            .addCase(getMovie.pending, (state) => {
+            .addCase(getMovie.pending, (state, action) => {
                 state.loading = true;
+                state.lastRequestId = action.meta.requestId;
             })
             .addCase(getMovie.fulfilled, (state, action) => {
-                state.movies = action.payload.res;
-                state.totalPages = action.payload.totalPages;
-                state.loading = false;
+                if (state.lastRequestId === action.meta.requestId) {
+                    state.error = null;
+                    state.loading = false;
+                    state.movies = action.payload.results;
+                    state.total_pages = action.payload.total_pages;
+                }
             })
             .addCase(getMovie.rejected, (state, action) => {
-                state.loading = false;
-                state.error = action.error.message || "Ошибка загрузки данных";
-            })
-            .addCase(getSeries.pending, (state) => {
-                state.loading = true;
-            })
-            .addCase(getSeries.fulfilled, (state, action) => {
-                state.series = action.payload.res;
-                state.totalPages = action.payload.totalPages;
-                state.loading = false;
-            })
-            .addCase(getSeries.rejected, (state, action) => {
-                state.loading = false;
-                state.error = action.error.message || "Ошибка загрузки данных";
+                if (state.lastRequestId === action.meta.requestId) {
+                    state.loading = false;
+                    state.error =
+                        action.error.message || "Failed to load movies";
+                }
             })
             .addCase(getOneMovie.pending, (state) => {
                 state.loading = true;
             })
-            .addCase(
-                getOneMovie.fulfilled,
-                (state, action: PayloadAction<IMovie>) => {
-                    state.loading = false;
-                    state.oneMovie = action.payload;
-                }
-            )
-            .addCase(getOneMovie.rejected, (state, action) => {
+            .addCase(getOneMovie.fulfilled, (state, action) => {
+                state.error = null;
                 state.loading = false;
-                state.error = action.payload as string;
+                state.oneMovie = action.payload.movie;
+                state.movieActor = action.payload.actors;
+            })
+            .addCase(getOneMovie.rejected, (state) => {
+                state.loading = false;
+                state.error = "Failed to load movie";
+            })
+            .addCase(getSeries.pending, (state, action) => {
+                state.loading = true;
+                state.lastRequestId = action.meta.requestId;
+            })
+            .addCase(getSeries.fulfilled, (state, action) => {
+                if (state.lastRequestId === action.meta.requestId) {
+                    state.error = null;
+                    state.loading = false;
+                    state.series = action.payload.results;
+                    state.total_pages = action.payload.total_pages;
+                }
+            })
+            .addCase(getSeries.rejected, (state, action) => {
+                if (state.lastRequestId === action.meta.requestId) {
+                    state.loading = false;
+                    state.error =
+                        action.error.message || "Failed to load series";
+                }
             })
             .addCase(getOneSeries.pending, (state) => {
                 state.loading = true;
             })
-            .addCase(
-                getOneSeries.fulfilled,
-                (state, action: PayloadAction<ISeries>) => {
-                    state.loading = false;
-                    state.oneSeries = action.payload;
-                }
-            )
-            .addCase(getOneSeries.rejected, (state, action) => {
+            .addCase(getOneSeries.fulfilled, (state, action) => {
+                state.error = null;
                 state.loading = false;
-                state.error = action.payload as string;
+                state.oneSeries = action.payload;
+            })
+            .addCase(getOneSeries.rejected, (state) => {
+                state.loading = false;
+                state.error = "Failed to load series";
             });
     },
 });
 
-export const { changePage, setSearch, setCategory, setItemsPerPage } =
-    productsSlice.actions;
-export default productsSlice.reducer;
+export const { clearPost, clearTotalPages } = postSlice.actions;
+export default postSlice.reducer;

@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axiosInstance from "../interseptors/axiosInstance";
-export const register = createAsyncThunk(
+
+export const registerFunc = createAsyncThunk(
     "user/register",
     async (
         registerData: {

@@ -24,16 +24,6 @@
                 position: relative;
                 display: flex;
                 justify-content: start;
-                label {
-                    display: flex;
-                    input {
-                        width: 50px;
-                        height: 25px;
-                    }
-                }
-                .errorText {
-                    color: red;
-                }
             }
             input {
                 display: flex;
@@ -42,11 +32,23 @@
                 height: 45px;
                 border-radius: 10px;
             }
+            .errorText {
+                height: 30px;
+                p {
+                    color: red;
+                    font-size: 14px;
+                }
+            }
             button {
                 width: 200px;
                 height: 45px;
                 border-radius: 10px;
                 border: 1px solid black;
+            }
+            .register {
+                font-size: 14px;
+                text-decoration: underline;
+                cursor: pointer;
             }
         }
     }

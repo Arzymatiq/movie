@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { loginFunc, register } from "./userAction";
+import { loginFunc, registerFunc } from "./userAction";
 import { IUser } from "../types/types";
 import { addDataToLocalStorage, updateToken } from "../../helpers/function";
 
@@ -64,15 +64,15 @@ const userSlice = createSlice({
                     console.error("Unexpected response:", action.payload);
                 }
             })
-            .addCase(register.pending, (state) => {
+            .addCase(registerFunc.pending, (state) => {
                 state.loading = true;
                 state.error = null;
             })
-            .addCase(register.rejected, (state, action) => {
+            .addCase(registerFunc.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload as string;
             })
-            .addCase(register.fulfilled, (state, action) => {
+            .addCase(registerFunc.fulfilled, (state, action) => {
                 state.loading = false;
                 state.user = action.payload.user;
             });

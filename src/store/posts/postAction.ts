@@ -2,95 +2,100 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { post_api } from "../../helpers/consts";
 import { RootState } from "../store";
-import { ISeries, IMovie } from "../types/types";
+import { ISeries, IMovie, IActors } from "../types/types";
+
+interface GetParams {
+    search?: string;
+    currentPage?: number;
+    itemsPerPage?: number;
+}
 
 interface GetMovieResponse {
-    res: IMovie[];
-    totalPages: number;
+    results: IMovie[];
+    total_pages: number;
 }
 
-interface GetSeriesResponse {
-    res: ISeries[];
-    totalPages: number;
-}
+export const getOneMovie = createAsyncThunk<
+    { movie: IMovie; actors: IActors[] },
+    string
+>("products/getOneMovie", async (id: string, { rejectWithValue }) => {
+    try {
+        const response = await axios.get(
+            `${post_api}/movie/${id}?language=en-US&api_key=69f583eb365b0fba39f4e56aadbe8e55`
+        );
+        const actorResponse = await axios.get(
+            `${post_api}/movie/${id}/credits?language=en-US&api_key=69f583eb365b0fba39f4e56aadbe8e55`
+        );
+        console.log(actorResponse.data);
 
-const getTotalPages = async (
-    url: string,
-    itemsPerPage: number
-): Promise<number> => {
-    const res = await axios.get(url);
-    return Math.ceil(res.data.length / itemsPerPage);
-};
-
-export const getOneMovie = createAsyncThunk<IMovie, string>(
-    "products/getOneMovie",
-    async (id: string, { rejectWithValue }) => {
-        try {
-            const response = await axios.get(`${post_api}/movies/${id}`);
-            return response.data as IMovie;
-        } catch (error) {
-            return rejectWithValue("Failed to fetch movie data");
-        }
+        return {
+            movie: response.data as IMovie,
+            actors: actorResponse.data.cast as IActors[],
+        };
+    } catch (error) {
+        return rejectWithValue(error);
     }
-);
-export const getOneSeries = createAsyncThunk<ISeries, string>(
-    "products/getOneSeries",
-    async (id: string, { rejectWithValue }) => {
-        try {
-            const response = await axios.get(`${post_api}/series/${id}`);
-            return response.data as ISeries;
-        } catch (error) {
-            return rejectWithValue("Failed to load series");
-        }
-    }
-);
+});
 
 export const getMovie = createAsyncThunk<
     GetMovieResponse,
-    { search: string; currentPage: number; itemsPerPage: number },
+    GetParams,
     { state: RootState }
->("products/getMovies", async ({ search, currentPage, itemsPerPage }) => {
-    const searchParams = `q=${search}`;
-    const paginationParams = `_start=${
-        (currentPage - 1) * itemsPerPage
-    }&_limit=${itemsPerPage}`;
+>("products/getMovie", async ({ currentPage }: GetParams) => {
+    const page = currentPage && currentPage > 500 ? 500 : currentPage;
+    const paginationParams = `page=${page}`;
+    const response = await fetch(
+        // --url 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc' \
 
-    const totalItems = await getTotalPages(
-        `${post_api}/movies?${searchParams}`,
-        itemsPerPage
+        `${post_api}/discover/movie?${paginationParams}&api_key=69f583eb365b0fba39f4e56aadbe8e55`
     );
-
-    const res = await axios.get<IMovie[]>(
-        `${post_api}/movies?${paginationParams}&${searchParams}`
-    );
+    const data = await response.json();
+    console.log(data);
 
     return {
-        res: res.data,
-        totalPages: totalItems,
+        results: data.results,
+        total_pages: data.total_pages,
     };
 });
+
+interface GetSeriesResponse {
+    results: ISeries[];
+    total_pages: number;
+}
 
 export const getSeries = createAsyncThunk<
     GetSeriesResponse,
-    { search: string; currentPage: number; itemsPerPage: number },
+    GetParams,
     { state: RootState }
->("products/getSeries", async ({ search, currentPage, itemsPerPage }) => {
-    const searchParams = `q=${search}`;
-    const paginationParams = `_start=${
-        (currentPage - 1) * itemsPerPage
-    }&_limit=${itemsPerPage}`;
-
-    const totalItems = await getTotalPages(
-        `${post_api}/series?${searchParams}`,
-        itemsPerPage
+>("products/getSeries", async ({ currentPage }: GetParams) => {
+    const page = currentPage && currentPage > 500 ? 500 : currentPage;
+    const paginationParams = `page=${page}`;
+    const response = await fetch(
+        `${post_api}/discover/tv?${paginationParams}&api_key=69f583eb365b0fba39f4e56aadbe8e55`
     );
-
-    const res = await axios.get<ISeries[]>(
-        `${post_api}/series?${paginationParams}&${searchParams}`
-    );
+    const data = await response.json();
+    console.log(data);
 
     return {
-        res: res.data,
-        totalPages: totalItems,
+        results: data.results,
+        total_pages: data.total_pages,
     };
 });
+
+export const getOneSeries = createAsyncThunk<ISeries, string>(
+    "products/getOneSeries",
+    async (id: string) => {
+        const response = await axios.get(
+            `${post_api}/tv/${id}?language=en-US&api_key=69f583eb365b0fba39f4e56aadbe8e55`
+        );
+        return response.data as ISeries;
+    }
+);
+
+export const getActors = createAsyncThunk<IActors, string>(
+    "products/getActors",
+    async (id: string) => {
+        const res = await axios.get(`${post_api}/movie/`);
+        return res.data as IActors;
+    }
+);

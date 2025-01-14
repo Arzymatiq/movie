@@ -11,34 +11,84 @@ export interface UserObj {
     image: any;
 }
 
+interface belongs_to_collection {
+    id: number;
+    backdrop_path: string;
+    name: string;
+    poster_path: string;
+}
+interface company {
+    id: number;
+    logo_path: string;
+    name: string;
+    origin_country: string;
+}
+
 export interface IMovie {
+    adult: boolean;
+    backdrop_path: string;
+    genre_ids: any[];
     id: number;
+    original_language: string;
+    imdb_id?: string;
+    generes: any[];
+    belongs_to_collection?: belongs_to_collection;
+    budget?: number;
+    production_companies?: company[];
+    production_countries?: any;
+    revenue?: number;
+
+    runtime?: number;
+    spoken_languages: any;
+    status: string;
+    tagline?: string;
+
+    original_title: string;
+    overview: string;
+    popularity: number;
+    poster_path: string;
+    release_date: Date;
     title: string;
-    image_desc: string;
-    image: string;
-    grade: number;
-    date: Date;
-    author: string;
-    description: string;
-    Age_limit: number;
-    time: number;
+    video: boolean;
+    vote_average: number;
+    vote_count: number;
 }
-export interface Iseries {
-    id: number;
-    title: string;
-    description: string;
-    date: Date;
-    series_image: string;
-}
+
 export interface ISeries {
+    adult: boolean;
+    backdrop_path: string;
+    created_by?: any[];
+    episode_run_time?: number[];
+    genres?: any[];
+    homepage?: string;
+    in_production: boolean;
+    languages?: any[];
+    last_air_date?: Date;
+    last_episode_to_air?: any;
+    networks?: any[];
+    next_episode_to_air?: any;
+    number_of_episodes?: number;
+    number_of_seasons?: number;
+    production_companies?: any[];
+    production_countries?: any[];
+    seasons?: any[];
+    spoken_languages?: any[];
+    status?: string;
+    tagline?: string;
+    first_air_date?: Date;
+    genre_ids?: any[];
     id: number;
-    title: string;
-    image: string;
-    grade: number;
-    series: Iseries[];
-    description: string;
-    Age_limit: number;
+    name: string;
+    origin_country?: string[];
+    original_language?: string;
+    original_name?: string;
+    overview?: string;
+    popularity?: number;
+    poster_path?: string;
+    vote_average: number;
+    vote_count: number;
 }
+
 export interface IUser {
     login: string;
     fullName: string;
@@ -49,6 +99,17 @@ export interface Tokens {
     access: string;
     refresh: string;
 }
-export interface Read {
-    read(url: string): void;
+export interface IActors {
+    adult: boolean;
+    gender: number;
+    id: number;
+    known_for_department: string;
+    name: string;
+    original_name: string;
+    popularity: number;
+    profile_path: string;
+    cast_id: number;
+    character: string;
+    credit_id: string;
+    order: number;
 }

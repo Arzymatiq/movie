@@ -1,21 +1,15 @@
-import React, { useState } from "react";
-import style from "./logForm.module.scss";
+import React from "react";
 import { useForm } from "react-hook-form";
-import { useAppDispatch } from "../../store/store";
+import style from "./logForm.module.scss";
 import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
-    const dispatch = useAppDispatch();
     const navigate = useNavigate();
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-
     const {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm();
-    console.log(register("fullName"));
+    } = useForm({ mode: "onBlur", reValidateMode: "onChange" });
 
     const onSubmit = (data: any) => {
         alert(JSON.stringify(data));
@@ -29,30 +23,71 @@ const LoginForm = () => {
                     <label htmlFor="">
                         <input
                             type="text"
-                            {...register("fullName", {
-                                required: true,
-                                maxLength: 20,
-                                minLength: 4,
+                            {...register("login", {
+                                required: "это поле обязательно к заполнению",
+                                maxLength: {
+                                    value: 20,
+                                    message: "максимальная длина 20 символов",
+                                },
+                                minLength: {
+                                    value: 4,
+                                    message: "минимальная длина 4 символа",
+                                },
                             })}
                         />
+                        <div className={style.errorText}>
+                            {errors?.login && (
+                                <p>{errors.login.message as string}</p>
+                            )}
+                        </div>
                     </label>
                     <label htmlFor="">
                         <input
                             type="password"
                             {...register("password", {
-                                required: true,
-                                maxLength: 20,
-                                minLength: 4,
+                                required: "это поле обязательно к заполнению",
+                                maxLength: {
+                                    value: 20,
+                                    message: "максимальная длина 20 символов",
+                                },
+                                minLength: {
+                                    value: 4,
+                                    message: "минимальная длина 4 символа",
+                                },
                             })}
                         />
+                        <div className={style.errorText}>
+                            {errors?.password && (
+                                <p>{errors.password.message as string}</p>
+                            )}
+                        </div>
                     </label>
                     <label htmlFor="">
                         <input
                             type="checkbox"
-                            {...register("isAccepted", { required: true })}
+                            {...register("isAgreeToManagmentData", {
+                                required: "вы должны согласиться с условиями",
+                            })}
                         />
+                        <div className={style.errorText}>
+                            {errors?.isAgreeToManagmentData && (
+                                <p>
+                                    {
+                                        errors.isAgreeToManagmentData
+                                            .message as string
+                                    }
+                                </p>
+                            )}
+                        </div>
                     </label>
                     <input type="submit" value="Login" />
+                    <p
+                        className={style.register}
+                        onClick={() => {
+                            navigate("/register");
+                        }}>
+                        Зарегистрироваться
+                    </p>
                 </form>
             </div>
         </div>

@@ -1,126 +1,161 @@
-import React, { FC, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../store/store";
-import { Box, Rating, Skeleton } from "@mui/material";
 import { getOneMovie } from "../../../store/posts/postAction";
-import style from "../style/moveItem.module.scss";
+import { IMovie } from "../../../store/types/types";
+import style from "../style/OnePost.module.scss";
+import styled from "../style/OneMovie.module.scss";
 
-const OneMovie: FC = () => {
-    const { id } = useParams<string>();
+import { clearPost } from "../../../store/posts/postSlice";
+import { Rating } from "@mui/material";
+
+const OneMovie: React.FC = () => {
+    const { id } = useParams<{ id: string }>();
     const dispatch = useAppDispatch();
-
     const { oneMovie, loading, error } = useAppSelector((state) => state.posts);
 
     useEffect(() => {
         if (id) {
             dispatch(getOneMovie(id));
         }
+        return () => {
+            dispatch(clearPost());
+        };
     }, [dispatch, id]);
-    console.log(loading);
+    console.log(oneMovie);
 
     return (
         <>
             {loading ? (
-                <>
-                    <div className={style.movieItem}>
-                        <div className={style.movieItem_center}>
-                            <Box
-                                sx={{
-                                    my: 5,
-                                    display: "flex",
-                                    justifyContent: "space-between",
-                                    alignItems: "center",
-                                }}>
-                                <Skeleton
-                                    variant="rectangular"
-                                    width={700}
-                                    height={300}
-                                    sx={{ bgcolor: "grey.900" }}
-                                />
-                                <Box
-                                    sx={{
-                                        width: "calc(100% - 550px)",
-                                        my: 5,
-                                        marginLeft: 2,
-                                    }}>
-                                    <Skeleton
-                                        width="60%"
-                                        sx={{
-                                            bgcolor: "grey.900",
-                                            marginBottom: 2,
-                                        }}
-                                    />
-                                    <Skeleton
-                                        width="80%"
-                                        sx={{ bgcolor: "grey.900" }}
-                                    />
-                                    <Skeleton
-                                        width="80%"
-                                        sx={{ bgcolor: "grey.900" }}
-                                    />
-                                    <Skeleton
-                                        width="80%"
-                                        sx={{ bgcolor: "grey.900" }}
-                                    />
-                                </Box>
-                            </Box>
-                        </div>
-                    </div>
-                </>
+                <div>Loading...</div>
+            ) : error ? (
+                <div>Error: {error}</div>
+            ) : !oneMovie ? (
+                <div>No movie found</div>
             ) : (
                 <>
-                    {!oneMovie ? (
-                        <>
-                            <div>This Movie doesn't exist :(</div>
-                        </>
-                    ) : (
-                        <>
-                            <div className={style.movieItem}>
-                                <div className={style.movieItem_center}>
-                                    <ul className={style.main_info_list}>
-                                        <li className={style.main_info_item}>
-                                            <div className={style.imageWrapper}>
-                                                <img
-                                                    src={
-                                                        oneMovie.image_desc ||
-                                                        "/default-image.jpg"
-                                                    }
-                                                    alt={
-                                                        oneMovie.title ||
-                                                        "No image available"
-                                                    }
-                                                    className={style.movieImage}
-                                                />
-                                            </div>
-                                        </li>
-                                        <li className={style.main_info_item}>
-                                            <p>{oneMovie.Age_limit}+</p>
+                    <div className={style.movieDetail}>
+                        <div className={style.info}>
+                            {oneMovie?.belongs_to_collection?.backdrop_path ? (
+                                <img
+                                    className={style.backdrop}
+                                    src={`https://image.tmdb.org/t/p/w500/${oneMovie?.belongs_to_collection?.backdrop_path}`}
+                                    alt={oneMovie?.belongs_to_collection.name}
+                                />
+                            ) : (
+                                <img
+                                    className={style.backdrop}
+                                    src={`https://image.tmdb.org/t/p/w500/${oneMovie.backdrop_path}`}
+                                    alt={oneMovie?.belongs_to_collection?.name}
+                                />
+                            )}
+
+                            <div className={style.main_info}>
+                                <div className={style.main_info_center}>
+                                    {oneMovie.belongs_to_collection
+                                        ?.poster_path ? (
+                                        <img
+                                            className={style.poster}
+                                            src={`https://image.tmdb.org/t/p/w500/${oneMovie?.belongs_to_collection.poster_path}`}
+                                            alt={
+                                                oneMovie.belongs_to_collection
+                                                    .name
+                                            }
+                                        />
+                                    ) : (
+                                        <img
+                                            className={style.poster}
+                                            src={`https://image.tmdb.org/t/p/w500/${oneMovie.poster_path}`}
+                                            alt={
+                                                oneMovie?.belongs_to_collection
+                                                    ?.name
+                                            }
+                                        />
+                                    )}
+                                    <div className={style.textbox}>
+                                        {oneMovie?.title
+                                            .toLowerCase()
+                                            .split(" ")
+                                            .some((word) =>
+                                                oneMovie?.original_title
+                                                    .toLowerCase()
+                                                    .includes(word)
+                                            ) ? (
                                             <h2>{oneMovie.title}</h2>
-                                            <p>{oneMovie.description}</p>
-                                            <div className={style.rating}>
-                                                <p>Rating</p>
-                                                <h2>{oneMovie.grade}</h2>
-                                                <Rating
-                                                    name="half-rating-read"
-                                                    value={oneMovie.grade}
-                                                    precision={0.2}
-                                                    max={10}
-                                                    sx={{
-                                                        "& .MuiRating-icon": {
-                                                            color: "orange",
-                                                            backgroundColor:
-                                                                "transparent",
-                                                        },
-                                                    }}
-                                                    readOnly
-                                                />
-                                            </div>
-                                        </li>
-                                    </ul>
+                                        ) : (
+                                            <>
+                                                {" "}
+                                                <h2>{oneMovie.title}</h2>
+                                                <p>{oneMovie.original_title}</p>
+                                            </>
+                                        )}
+
+                                        <br />
+                                        <p>{oneMovie.overview}</p>
+                                        <br />
+                                        <p>
+                                            Grade count: {oneMovie.vote_count}
+                                        </p>
+
+                                        <p>Rating: {oneMovie.vote_average}</p>
+
+                                        <Rating
+                                            name="half-rating-read"
+                                            value={oneMovie.vote_average / 2}
+                                            precision={0.2}
+                                            max={5}
+                                            sx={{
+                                                "& .MuiRating-icon": {
+                                                    color: "orange",
+                                                    backgroundColor:
+                                                        "transparent",
+                                                },
+                                            }}
+                                            readOnly
+                                        />
+                                    </div>
                                 </div>
                             </div>
-                        </>
-                    )}
+                        </div>
+                    </div>
+                    {/* 
+                    <div className={style.actors}>
+                        <h2>actors</h2>
+                        <div className={style.actors_center}>
+                            {oneMovie?.production_companies?.map(
+                                (item: any) => (
+                                    <div className={style.company_item}>
+                                        <p>{item.name}</p>
+                                        <p>{item.origin_country}</p>
+                                        <img
+                                            src={`https://image.tmdb.org/t/p/w500/${item.logo_path}`}
+                                            alt=""
+                                        />
+                                    </div>
+                                )
+                            )}
+                        </div>
+                    </div> */}
+                    <div className={styled.prodaction_companies}>
+                        <h2>Companies</h2>
+                        <div className={styled.prodaction_companies_center}>
+                            {oneMovie?.production_companies?.map(
+                                (item: any) => (
+                                    <div className={styled.company_item}>
+                                        <img
+                                            src={`https://image.tmdb.org/t/p/w500/${item.logo_path}`}
+                                            alt=""
+                                        />
+                                        <p> company: {item.name}</p>
+                                        <p>
+                                            company country:{" "}
+                                            {item.origin_country}
+                                        </p>
+                                    </div>
+                                )
+                            )}
+                        </div>
+                    </div>
                 </>
             )}
         </>

@@ -1,27 +1,28 @@
+import React, { Suspense, lazy } from "react";
 import {
     createBrowserRouter,
     createRoutesFromElements,
     Route,
     RouterProvider,
 } from "react-router-dom";
-import React, { Suspense, lazy } from "react";
 import Layout from "../components/layOut/Layout";
 import Error from "../components/error/Error";
+import OneSeries from "../components/home/series/OneSeries";
 
 const MoviesList = lazy(() => import("../components/home/movies/MoviesList"));
 const OneMovie = lazy(() => import("../components/home/movies/OneMovie"));
-const SeriesList = lazy(() => import("../components/home/series/SeriesList"));
-const SeriesDesc = lazy(() => import("../components/home/series/SeriesDesc"));
 const RegisterForm = lazy(() => import("../components/user/RegisterForm"));
 const LoginForm = lazy(() => import("../components/user/LoginForm"));
+const SeriseList = lazy(() => import("../components/home/series/SeriesList"));
+const SeriesItem = lazy(() => import("../components/home/series/SeriesList"));
 
 const ROUTES = [
     { id: 1, path: "/", element: <MoviesList /> },
     { id: 2, path: "/register", element: <RegisterForm /> },
     { id: 3, path: "/login", element: <LoginForm /> },
     { id: 4, path: "/movie/:id", element: <OneMovie /> },
-    { id: 5, path: "/series", element: <SeriesList /> },
-    { id: 6, path: "/series/:id", element: <SeriesDesc /> },
+    { id: 5, path: "/series", element: <SeriseList /> },
+    { id: 6, path: "/series/:id", element: <OneSeries /> },
 ];
 
 const MainRouter = () => {
