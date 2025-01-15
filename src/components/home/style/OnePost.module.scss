@@ -43,10 +43,19 @@
                     border-radius: 10px;
                     object-fit: cover;
                 }
+                .poster_skeleton {
+                    height: 80%;
+                    border-radius: 10px;
+                    object-fit: cover;
+                    background: rgb(125, 125, 125);
+                }
                 .textbox {
                     display: flex;
                     flex-direction: column;
                     width: 50%;
+                    .skeleton {
+                        background-color: rgb(125, 125, 125);
+                    }
                 }
             }
         }

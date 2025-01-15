@@ -1,9 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { post_api } from "../../helpers/consts";
+import { post_api, api_key } from "../../helpers/consts";
 import { RootState } from "../store";
-import { ISeries, IMovie, IActors } from "../types/types";
-
+import { ISeries, IMovie, IActors, ISeriesDetails } from "../types/types";
 interface GetParams {
     search?: string;
     currentPage?: number;
@@ -15,22 +14,35 @@ interface GetMovieResponse {
     total_pages: number;
 }
 
-export const getOneMovie = createAsyncThunk<
-    { movie: IMovie; actors: IActors[] },
+export const getOneMovie = createAsyncThunk<{ movie: IMovie }, string>(
+    "products/getOneMovie",
+    async (id: string, { rejectWithValue }) => {
+        try {
+            const movieResponse = await axios.get(
+                `${post_api}/movie/${id}?language=en-US&${api_key}`
+            );
+
+            return {
+                movie: movieResponse.data as IMovie,
+            };
+        } catch (error) {
+            return rejectWithValue(error);
+        }
+    }
+);
+
+export const getActors = createAsyncThunk<
+    { actorsCast: IActors[]; actorsCrew: IActors[] },
     string
->("products/getOneMovie", async (id: string, { rejectWithValue }) => {
+>("products/getActors", async (id: string, { rejectWithValue }) => {
     try {
-        const response = await axios.get(
-            `${post_api}/movie/${id}?language=en-US&api_key=69f583eb365b0fba39f4e56aadbe8e55`
-        );
         const actorResponse = await axios.get(
-            `${post_api}/movie/${id}/credits?language=en-US&api_key=69f583eb365b0fba39f4e56aadbe8e55`
+            `${post_api}/movie/${id}/credits?language=en-US&${api_key}`
         );
-        console.log(actorResponse.data);
 
         return {
-            movie: response.data as IMovie,
-            actors: actorResponse.data.cast as IActors[],
+            actorsCast: actorResponse.data.cast as IActors[],
+            actorsCrew: actorResponse.data.crew as IActors[],
         };
     } catch (error) {
         return rejectWithValue(error);
@@ -44,17 +56,16 @@ export const getMovie = createAsyncThunk<
 >("products/getMovie", async ({ currentPage }: GetParams) => {
     const page = currentPage && currentPage > 500 ? 500 : currentPage;
     const paginationParams = `page=${page}`;
-    const response = await fetch(
-        // --url 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc' \
+    console.log(`${post_api}/discover/movie?${paginationParams}&${api_key}`);
 
-        `${post_api}/discover/movie?${paginationParams}&api_key=69f583eb365b0fba39f4e56aadbe8e55`
+    const response = await axios.get(
+        `${post_api}/discover/movie?${paginationParams}&${api_key}`
     );
-    const data = await response.json();
-    console.log(data);
+    console.log(response.request);
 
     return {
-        results: data.results,
-        total_pages: data.total_pages,
+        results: response.data.results,
+        total_pages: response.data.total_pages,
     };
 });
 
@@ -70,32 +81,46 @@ export const getSeries = createAsyncThunk<
 >("products/getSeries", async ({ currentPage }: GetParams) => {
     const page = currentPage && currentPage > 500 ? 500 : currentPage;
     const paginationParams = `page=${page}`;
-    const response = await fetch(
-        `${post_api}/discover/tv?${paginationParams}&api_key=69f583eb365b0fba39f4e56aadbe8e55`
+    const response = await axios.get(
+        `${post_api}/discover/tv?${paginationParams}&${api_key}`
     );
-    const data = await response.json();
-    console.log(data);
-
     return {
-        results: data.results,
-        total_pages: data.total_pages,
+        results: response.data.results,
+        total_pages: response.data.total_pages,
     };
 });
 
 export const getOneSeries = createAsyncThunk<ISeries, string>(
     "products/getOneSeries",
     async (id: string) => {
+        const proverka = `${post_api}/tv/${id}?language=en-US&${api_key}`;
+        console.log(proverka);
         const response = await axios.get(
-            `${post_api}/tv/${id}?language=en-US&api_key=69f583eb365b0fba39f4e56aadbe8e55`
+            `${post_api}/tv/${id}?language=en-US&${api_key}`
         );
         return response.data as ISeries;
     }
 );
+interface SeasonProps {
+    id: string;
+    season_number: number;
+}
 
-export const getActors = createAsyncThunk<IActors, string>(
-    "products/getActors",
-    async (id: string) => {
-        const res = await axios.get(`${post_api}/movie/`);
-        return res.data as IActors;
+export const getOneSeriesDetails = createAsyncThunk<
+    ISeriesDetails,
+    SeasonProps,
+    { rejectValue: string }
+>(
+    "products/getOneSeriesDetails",
+    async ({ id, season_number }: SeasonProps, { rejectWithValue }) => {
+        try {
+            const response = await axios.get(
+                `${post_api}/tv/${id}/season/${season_number}?language=en-US&${api_key}`
+            );
+            console.log(response);
+            return response.data as ISeriesDetails;
+        } catch (error) {
+            return rejectWithValue("Не удалось загрузить данные");
+        }
     }
 );

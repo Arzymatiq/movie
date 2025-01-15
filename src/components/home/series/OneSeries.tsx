@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../store/store";
 import { getOneSeries } from "../../../store/posts/postAction";
 import styled from "../style/OneSeries.module.scss";
 import style from "../style/OnePost.module.scss";
 import { clearPost } from "../../../store/posts/postSlice";
-import { Rating } from "@mui/material";
+import { Rating, Skeleton } from "@mui/material";
 
 const OneSeries: React.FC = () => {
     const { id } = useParams<{ id: string }>();
@@ -13,7 +13,7 @@ const OneSeries: React.FC = () => {
     const { oneSeries, loading, error } = useAppSelector(
         (state) => state.posts
     );
-
+    const navigate = useNavigate();
     useEffect(() => {
         if (id) {
             dispatch(getOneSeries(id));
@@ -43,7 +43,46 @@ const OneSeries: React.FC = () => {
     return (
         <>
             {loading ? (
-                <div>Loading...</div>
+                <div className={style.movieDetail}>
+                    <div className={style.info}>
+                        <Skeleton
+                            className={style.backdrop}
+                            variant="rectangular"
+                        />
+
+                        <div className={style.main_info}>
+                            <div className={style.main_info_center}>
+                                <Skeleton
+                                    className={style.poster_skeleton}
+                                    variant="rectangular"
+                                />
+
+                                <div className={style.textbox}>
+                                    <Skeleton
+                                        className={style.skeleton}
+                                        animation="wave"
+                                        width={400}
+                                    />
+                                    <Skeleton
+                                        className={style.skeleton}
+                                        animation="wave"
+                                        width={400}
+                                    />
+                                    <br />
+                                    <Skeleton animation="wave" width={400} />
+                                    <br />
+                                    <p>
+                                        <Skeleton
+                                            className={style.skeleton}
+                                            animation="wave"
+                                            width={400}
+                                        />
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             ) : error ? (
                 <div>Error: {error}</div>
             ) : !oneSeries ? (
@@ -65,7 +104,10 @@ const OneSeries: React.FC = () => {
                                         alt=""
                                     />
                                     <div className={style.textbox}>
-                                        <h2>{oneSeries.name}</h2>
+                                        <h2>
+                                            {`${oneSeries.name}
+                                            (${oneSeries?.first_air_date})`}
+                                        </h2>
                                         <p>{oneSeries.original_name}</p>
                                         <br />
                                         <p>{oneSeries.overview}</p>
@@ -90,6 +132,8 @@ const OneSeries: React.FC = () => {
                                             }}
                                             readOnly
                                         />
+                                        <br />
+                                        <p>{`created by ${oneSeries?.created_by?.name}`}</p>
                                     </div>
                                 </div>
                             </div>
@@ -121,7 +165,12 @@ const OneSeries: React.FC = () => {
                                     return (
                                         <div
                                             className={styled.seasons_item}
-                                            key={season.id}>
+                                            key={season.id}
+                                            onClick={() =>
+                                                navigate(
+                                                    `seriesDetails/${season.id}/${season.season_number}`
+                                                )
+                                            }>
                                             <img
                                                 className={
                                                     styled.seasons_poster

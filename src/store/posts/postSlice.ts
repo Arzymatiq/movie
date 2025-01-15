@@ -1,6 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { getMovie, getOneMovie, getOneSeries, getSeries } from "./postAction";
-import { IMovie, ISeries, IActors } from "../types/types";
+import {
+    getActors,
+    getMovie,
+    getOneMovie,
+    getOneSeries,
+    getOneSeriesDetails,
+    getSeries,
+} from "./postAction";
+import { IMovie, ISeries, IActors, ISeriesDetails } from "../types/types";
 
 interface PostState {
     movies: IMovie[];
@@ -9,8 +16,10 @@ interface PostState {
     loading: boolean;
     error: string | null;
     oneMovie: IMovie | null;
-    movieActor: IActors[] | null;
+    actorsCast: IActors[] | null;
+    actorsCrew: IActors[] | null;
     oneSeries: ISeries | null;
+    oneSeriesDetails: ISeriesDetails | null;
     lastRequestId: string | null;
 }
 
@@ -21,8 +30,10 @@ const initialState: PostState = {
     loading: false,
     error: null,
     oneMovie: null,
-    movieActor: [],
+    actorsCast: null,
+    actorsCrew: null,
     oneSeries: null,
+    oneSeriesDetails: null,
     lastRequestId: null,
 };
 
@@ -66,9 +77,21 @@ const postSlice = createSlice({
                 state.error = null;
                 state.loading = false;
                 state.oneMovie = action.payload.movie;
-                state.movieActor = action.payload.actors;
             })
             .addCase(getOneMovie.rejected, (state) => {
+                state.loading = false;
+                state.error = "Failed to load movie";
+            })
+            .addCase(getActors.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(getActors.fulfilled, (state, action) => {
+                state.loading = false;
+                state.error = null;
+                state.actorsCast = action.payload.actorsCast;
+                state.actorsCrew = action.payload.actorsCrew;
+            })
+            .addCase(getActors.rejected, (state, action) => {
                 state.loading = false;
                 state.error = "Failed to load movie";
             })
@@ -102,6 +125,20 @@ const postSlice = createSlice({
             .addCase(getOneSeries.rejected, (state) => {
                 state.loading = false;
                 state.error = "Failed to load series";
+            })
+            .addCase(getOneSeriesDetails.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(getOneSeriesDetails.fulfilled, (state, action) => {
+                state.loading = false;
+                state.error = null;
+                console.log(action.payload);
+
+                state.oneSeriesDetails = action.payload;
+            })
+            .addCase(getOneSeriesDetails.rejected, (state, action) => {
+                state.loading = false;
+                state.error = "error";
             });
     },
 });

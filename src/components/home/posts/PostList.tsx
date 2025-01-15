@@ -1,11 +1,8 @@
-import React, { useEffect, useState, memo } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useLocation } from "react-router-dom";
-import { Skeleton, TextField } from "@mui/material";
-import { RootState } from "../../../store/store";
+import React, { useState, memo } from "react";
+import { useNavigate } from "react-router-dom";
+import { Skeleton } from "@mui/material";
+import { useAppSelector } from "../../../store/store";
 import style from "../style/post.module.scss";
-import MyPagination from "../../pagination/Pagination";
-import { clearTotalPages } from "../../../store/posts/postSlice";
 
 interface PostListProps<T> {
     items: T[];
@@ -21,11 +18,10 @@ const PostList = <T extends { id: number }>({
     items,
     renderItem,
     toNav,
-    total,
 }: PostListProps<T>) => {
     const navigate = useNavigate();
-    const { loading, error } = useSelector((state: RootState) => state.posts);
-    const [hoveredItem, setHoveredItem] = useState<number | null>(null);
+    const { loading, error } = useAppSelector((state) => state.posts);
+    const [_, setHoveredItem] = useState<number | null>(null);
 
     const renderSkeletons = () =>
         Array.from({ length: 20 }).map((_, index) => (

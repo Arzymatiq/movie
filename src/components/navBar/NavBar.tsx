@@ -31,6 +31,9 @@ const NavBar = () => {
                     <button onClick={() => handleNavigate("/series")}>
                         Сериалы
                     </button>
+                    <button onClick={() => handleNavigate("/katya")}>
+                        Посхалка
+                    </button>
                 </div>
                 <div
                     className={style.login}
