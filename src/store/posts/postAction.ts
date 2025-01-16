@@ -48,26 +48,28 @@ export const getActors = createAsyncThunk<
         return rejectWithValue(error);
     }
 });
-
 export const getMovie = createAsyncThunk<
     GetMovieResponse,
     GetParams,
-    { state: RootState }
->("products/getMovie", async ({ currentPage }: GetParams) => {
-    const page = currentPage && currentPage > 500 ? 500 : currentPage;
-    const paginationParams = `page=${page}`;
-    console.log(`${post_api}/discover/movie?${paginationParams}&${api_key}`);
-
-    const response = await axios.get(
-        `${post_api}/discover/movie?${paginationParams}&${api_key}`
-    );
-    console.log(response.request);
-
-    return {
-        results: response.data.results,
-        total_pages: response.data.total_pages,
-    };
-});
+    { rejectValue: string }
+>(
+    "products/getMovie",
+    async ({ currentPage }: GetParams, { rejectWithValue }) => {
+        const page = currentPage && currentPage > 500 ? 500 : currentPage;
+        const paginationParams = `page=${page}`;
+        try {
+            const response = await axios.get(
+                `${post_api}/discover/movie?${paginationParams}&${api_key}`
+            );
+            return {
+                results: response.data.results,
+                total_pages: response.data.total_pages,
+            };
+        } catch (error) {
+            return rejectWithValue("Failed to load movies");
+        }
+    }
+);
 
 interface GetSeriesResponse {
     results: ISeries[];

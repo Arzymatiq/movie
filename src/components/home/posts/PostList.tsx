@@ -5,13 +5,13 @@ import { useAppSelector } from "../../../store/store";
 import style from "../style/post.module.scss";
 
 interface PostListProps<T> {
-    items: T[];
+    items: T[]; // Generic массив объектов
     renderItem: (
         item: T,
         onHover: (id: number | null) => void
-    ) => React.ReactNode;
-    toNav: string;
-    total: number;
+    ) => React.ReactNode; // Функция рендера
+    toNav: string; // Навигационный путь
+    total: number; // Всего элементов
 }
 
 const PostList = <T extends { id: number }>({
@@ -39,30 +39,26 @@ const PostList = <T extends { id: number }>({
     };
 
     return (
-        <>
-            <div className={style.postlist}>
-                {loading ? (
-                    <div className={style.loading}>{renderSkeletons()}</div>
-                ) : error ? (
-                    <div className={style.error}>
-                        An error occurred: {error}
-                    </div>
-                ) : (
-                    <div className={style.postlist_center}>
-                        {items.map((item) => (
-                            <div
-                                key={item.id}
-                                className={style.postItem}
-                                onClick={() => navigate(`/${toNav}/${item.id}`)}
-                                onMouseEnter={() => handleHover(item.id)}
-                                onMouseLeave={() => handleHover(null)}>
-                                {renderItem(item, handleHover)}
-                            </div>
-                        ))}
-                    </div>
-                )}
-            </div>
-        </>
+        <div className={style.postlist}>
+            {loading ? (
+                <div className={style.loading}>{renderSkeletons()}</div>
+            ) : error ? (
+                <div className={style.error}>An error occurred: {error}</div>
+            ) : (
+                <div className={style.postlist_center}>
+                    {items.map((item) => (
+                        <div
+                            key={item.id}
+                            className={style.postItem}
+                            onClick={() => navigate(`/${toNav}/${item.id}`)}
+                            onMouseEnter={() => handleHover(item.id)}
+                            onMouseLeave={() => handleHover(null)}>
+                            {renderItem(item, handleHover)}
+                        </div>
+                    ))}
+                </div>
+            )}
+        </div>
     );
 };
 

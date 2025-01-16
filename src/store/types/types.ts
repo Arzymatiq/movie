@@ -38,7 +38,7 @@ export interface IMovie {
     production_countries?: any;
     revenue?: number;
 
-    runtime?: number;
+    runtime?: number | undefined;
     spoken_languages: any;
     status: string;
     tagline?: string;
@@ -195,6 +195,20 @@ export interface ISeriesDetails {
     vote_count: number;
 }
 
+export interface Iguest_stars {
+    adult: boolean;
+    character: number;
+    credit_id: string;
+    gender: number;
+    id: number;
+    known_for_department: string;
+    name: string;
+    order: number;
+    original_name: string;
+    popularity: number;
+    profile_path: string;
+}
+
 export interface ISeasonDesc {
     id: number;
     air_date: string;
@@ -221,19 +235,7 @@ export interface ISeasonDesc {
         }[];
         episode_number: number;
         episode_type: string;
-        guest_stars: {
-            adult: boolean;
-            character: number;
-            credit_id: string;
-            gender: number;
-            id: number;
-            known_for_department: string;
-            name: string;
-            order: number;
-            original_name: string;
-            popularity: number;
-            profile_path: string;
-        }[];
+        guest_stars: Iguest_stars[];
         id: number;
         name: string;
         overview: string;

@@ -1,22 +1,24 @@
-import React, { useEffect, FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../store/store";
-import { getSeries } from "../../../store/posts/postAction";
+import { getSeries } from "../../../store/posts/postAction"; // Предположительно, action для сериалов
 import SeriesItem from "./SeriesItem";
 import PostList from "../posts/PostList";
-import { ISeries } from "../../../store/types/types";
+import { ISeries } from "../../../store/types/types"; // Интерфейс для сериалов
 import MyPagination from "../../pagination/Pagination";
-import { useNavigate } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
-const SeriseList: FC = () => {
+const SeriesList: FC = () => {
     const dispatch = useAppDispatch();
-    const [currentPage, setCurrentPage] = useState<number>(1);
     const { series, total_pages } = useAppSelector((state) => state.posts);
-    const navigate = useNavigate();
+    const [searchParams, setSearchParams] = useSearchParams();
+
+    const initialPage = Number(searchParams.get("page")) || 1;
+    const [currentPage, setCurrentPage] = useState<number>(initialPage);
 
     useEffect(() => {
         dispatch(
             getSeries({
-                currentPage: currentPage || 1,
+                currentPage,
             })
         );
     }, [dispatch, currentPage]);
@@ -24,23 +26,24 @@ const SeriseList: FC = () => {
     const handlePageChange = (page: number) => {
         if (page !== currentPage) {
             setCurrentPage(page);
-            navigate(`?page=${page}`);
+            setSearchParams({ page: page.toString() });
         }
     };
 
     return (
         <>
             <PostList<ISeries>
-                items={series}
+                items={series.entities ? Object.values(series.entities) : []} // Convert entities to an array
                 renderItem={(post, onHover) => (
                     <SeriesItem post={post} onHover={onHover} key={post.id} />
                 )}
-                toNav="series"
-                total={total_pages}
+                toNav={"series"}
+                total={0}
             />
+
             <MyPagination total={total_pages} onChange={handlePageChange} />
         </>
     );
 };
 
-export default SeriseList;
+export default SeriesList;

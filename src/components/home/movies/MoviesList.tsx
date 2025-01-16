@@ -5,24 +5,18 @@ import MoviesItem from "./MoviesItem";
 import PostList from "../posts/PostList";
 import { IMovie } from "../../../store/types/types";
 import MyPagination from "../../pagination/Pagination";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 const MoviesList: FC = () => {
     const dispatch = useAppDispatch();
     const { movies, total_pages } = useAppSelector((state) => state.posts);
     const [searchParams, setSearchParams] = useSearchParams();
-    const navigate = useNavigate();
-
-    // Считываем текущую страницу из URL
-    const initialPage = Number(searchParams.get("page")) || 1;
-    const [currentPage, setCurrentPage] = useState<number>(initialPage);
+    const [currentPage, setCurrentPage] = useState(
+        Number(searchParams.get("page")) || 1
+    );
 
     useEffect(() => {
-        dispatch(
-            getMovie({
-                currentPage,
-            })
-        );
+        dispatch(getMovie({ currentPage }));
     }, [dispatch, currentPage]);
 
     const handlePageChange = (page: number) => {
@@ -35,13 +29,14 @@ const MoviesList: FC = () => {
     return (
         <>
             <PostList<IMovie>
-                items={movies}
+                items={movies.entities ? Object.values(movies.entities) : []} // Convert entities to an array
                 renderItem={(post, onHover) => (
                     <MoviesItem post={post} onHover={onHover} key={post.id} />
                 )}
-                toNav="movie"
-                total={total_pages}
+                toNav={"movie"}
+                total={0}
             />
+
             <MyPagination total={total_pages} onChange={handlePageChange} />
         </>
     );

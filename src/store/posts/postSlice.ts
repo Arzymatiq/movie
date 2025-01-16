@@ -1,4 +1,9 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import {
+    createSlice,
+    createEntityAdapter,
+    PayloadAction,
+} from "@reduxjs/toolkit";
+import { IMovie, ISeries, IActors, ISeasonDesc } from "../types/types";
 import {
     getActors,
     getMovie,
@@ -7,31 +12,35 @@ import {
     getOneSeriesDetails,
     getSeries,
 } from "./postAction";
-import { IMovie, ISeries, IActors, ISeasonDesc } from "../types/types";
+
+// Create entity adapters for movies, series, and actors
+const moviesAdapter = createEntityAdapter<IMovie>();
+const seriesAdapter = createEntityAdapter<ISeries>();
+const actorsAdapter = createEntityAdapter<IActors>();
 
 interface PostState {
-    movies: IMovie[];
-    series: ISeries[];
+    movies: ReturnType<typeof moviesAdapter.getInitialState>;
+    series: ReturnType<typeof seriesAdapter.getInitialState>;
+    actorsCast: ReturnType<typeof actorsAdapter.getInitialState>;
+    actorsCrew: ReturnType<typeof actorsAdapter.getInitialState>;
     total_pages: number;
     loading: boolean;
     error: string | null;
     oneMovie: IMovie | null;
-    actorsCast: IActors[] | null;
-    actorsCrew: IActors[] | null;
     oneSeries: ISeries | null;
     oneSeriesDetails: ISeasonDesc | null;
     lastRequestId: string | null;
 }
 
 const initialState: PostState = {
-    movies: [],
-    series: [],
+    movies: moviesAdapter.getInitialState(),
+    series: seriesAdapter.getInitialState(),
+    actorsCast: actorsAdapter.getInitialState(),
+    actorsCrew: actorsAdapter.getInitialState(),
     total_pages: 1,
     loading: false,
     error: null,
     oneMovie: null,
-    actorsCast: null,
-    actorsCrew: null,
     oneSeries: null,
     oneSeriesDetails: null,
     lastRequestId: null,
@@ -41,6 +50,7 @@ const postSlice = createSlice({
     name: "posts",
     initialState,
     reducers: {
+        // Use the adapter methods to add or remove movies/series/actors
         clearPost: (state) => {
             state.oneMovie = null;
             state.oneSeries = null;
@@ -48,6 +58,18 @@ const postSlice = createSlice({
         },
         clearTotalPages: (state) => {
             state.total_pages = 0;
+        },
+        setMovies: (state, action: PayloadAction<IMovie[]>) => {
+            moviesAdapter.setAll(state.movies, action.payload);
+        },
+        setSeries: (state, action: PayloadAction<ISeries[]>) => {
+            seriesAdapter.setAll(state.series, action.payload);
+        },
+        setActorsCast: (state, action: PayloadAction<IActors[]>) => {
+            actorsAdapter.setAll(state.actorsCast, action.payload);
+        },
+        setActorsCrew: (state, action: PayloadAction<IActors[]>) => {
+            actorsAdapter.setAll(state.actorsCrew, action.payload);
         },
     },
     extraReducers: (builder) => {
@@ -60,7 +82,7 @@ const postSlice = createSlice({
                 if (state.lastRequestId === action.meta.requestId) {
                     state.error = null;
                     state.loading = false;
-                    state.movies = action.payload.results;
+                    moviesAdapter.setAll(state.movies, action.payload.results);
                     state.total_pages = action.payload.total_pages;
                 }
             })
@@ -69,6 +91,25 @@ const postSlice = createSlice({
                     state.loading = false;
                     state.error =
                         action.error.message || "Failed to load movies";
+                }
+            })
+            .addCase(getSeries.pending, (state, action) => {
+                state.loading = true;
+                state.lastRequestId = action.meta.requestId;
+            })
+            .addCase(getSeries.fulfilled, (state, action) => {
+                if (state.lastRequestId === action.meta.requestId) {
+                    state.error = null;
+                    state.loading = false;
+                    seriesAdapter.setAll(state.series, action.payload.results);
+                    state.total_pages = action.payload.total_pages;
+                }
+            })
+            .addCase(getSeries.rejected, (state, action) => {
+                if (state.lastRequestId === action.meta.requestId) {
+                    state.loading = false;
+                    state.error =
+                        action.error.message || "Failed to load series";
                 }
             })
             .addCase(getOneMovie.pending, (state) => {
@@ -89,31 +130,18 @@ const postSlice = createSlice({
             .addCase(getActors.fulfilled, (state, action) => {
                 state.loading = false;
                 state.error = null;
-                state.actorsCast = action.payload.actorsCast;
-                state.actorsCrew = action.payload.actorsCrew;
+                actorsAdapter.setAll(
+                    state.actorsCast,
+                    action.payload.actorsCast
+                );
+                actorsAdapter.setAll(
+                    state.actorsCrew,
+                    action.payload.actorsCrew
+                );
             })
             .addCase(getActors.rejected, (state, action) => {
                 state.loading = false;
-                state.error = "Failed to load movie";
-            })
-            .addCase(getSeries.pending, (state, action) => {
-                state.loading = true;
-                state.lastRequestId = action.meta.requestId;
-            })
-            .addCase(getSeries.fulfilled, (state, action) => {
-                if (state.lastRequestId === action.meta.requestId) {
-                    state.error = null;
-                    state.loading = false;
-                    state.series = action.payload.results;
-                    state.total_pages = action.payload.total_pages;
-                }
-            })
-            .addCase(getSeries.rejected, (state, action) => {
-                if (state.lastRequestId === action.meta.requestId) {
-                    state.loading = false;
-                    state.error =
-                        action.error.message || "Failed to load series";
-                }
+                state.error = "Failed to load actors";
             })
             .addCase(getOneSeries.pending, (state) => {
                 state.loading = true;
@@ -134,15 +162,22 @@ const postSlice = createSlice({
                 state.loading = false;
                 state.error = null;
                 console.log(action.payload);
-
                 state.oneSeriesDetails = action.payload;
             })
             .addCase(getOneSeriesDetails.rejected, (state, action) => {
                 state.loading = false;
-                state.error = "error";
+                state.error = "Failed to load series details";
             });
     },
 });
 
-export const { clearPost, clearTotalPages } = postSlice.actions;
+export const {
+    clearPost,
+    clearTotalPages,
+    setMovies,
+    setSeries,
+    setActorsCast,
+    setActorsCrew,
+} = postSlice.actions;
+
 export default postSlice.reducer;
