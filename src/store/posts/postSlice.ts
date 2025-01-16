@@ -7,7 +7,7 @@ import {
     getOneSeriesDetails,
     getSeries,
 } from "./postAction";
-import { IMovie, ISeries, IActors, ISeriesDetails } from "../types/types";
+import { IMovie, ISeries, IActors, ISeasonDesc } from "../types/types";
 
 interface PostState {
     movies: IMovie[];
@@ -19,7 +19,7 @@ interface PostState {
     actorsCast: IActors[] | null;
     actorsCrew: IActors[] | null;
     oneSeries: ISeries | null;
-    oneSeriesDetails: ISeriesDetails | null;
+    oneSeriesDetails: ISeasonDesc | null;
     lastRequestId: string | null;
 }
 
@@ -44,6 +44,7 @@ const postSlice = createSlice({
         clearPost: (state) => {
             state.oneMovie = null;
             state.oneSeries = null;
+            state.oneSeriesDetails = null;
         },
         clearTotalPages: (state) => {
             state.total_pages = 0;

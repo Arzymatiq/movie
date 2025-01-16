@@ -23,10 +23,7 @@ const OneSeries: React.FC = () => {
         }
     }, [dispatch, id]);
 
-    console.log(oneSeries);
-
     const checkSeasonNumber = (season: any) => {
-        console.log(oneSeries?.created_by.name);
         if (season?.name.toLowerCase().split(" ").includes("season")) {
             return <h4>{season.name}</h4>;
         } else {
@@ -132,7 +129,13 @@ const OneSeries: React.FC = () => {
                                             readOnly
                                         />
                                         <br />
-                                        <p>{`created by ${oneSeries?.created_by?.original_name}`}</p>
+                                        <p>
+                                            {`create by ${oneSeries.created_by
+                                                .map((item) => {
+                                                    return `${item?.name} (${item?.original_name})`;
+                                                })
+                                                .join(", ")}`}{" "}
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -167,7 +170,7 @@ const OneSeries: React.FC = () => {
                                             key={season.id}
                                             onClick={() =>
                                                 navigate(
-                                                    `seriesDetails/${season.id}/${season.season_number}`
+                                                    `${season.season_number}`
                                                 )
                                             }>
                                             <img

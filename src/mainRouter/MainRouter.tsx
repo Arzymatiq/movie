@@ -28,7 +28,7 @@ const ROUTES = [
     { id: 6, path: "/series/:id", element: <OneSeries /> },
     {
         id: 6,
-        path: "series/:seriesId/seriesDetails/:id/:season_number",
+        path: "series/:id/:season_number",
         element: <SeriesDetails />,
     },
 ];

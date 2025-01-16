@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { post_api, api_key } from "../../helpers/consts";
 import { RootState } from "../store";
-import { ISeries, IMovie, IActors, ISeriesDetails } from "../types/types";
+import { ISeries, IMovie, IActors, ISeasonDesc } from "../types/types";
 interface GetParams {
     search?: string;
     currentPage?: number;
@@ -107,7 +107,7 @@ interface SeasonProps {
 }
 
 export const getOneSeriesDetails = createAsyncThunk<
-    ISeriesDetails,
+    ISeasonDesc,
     SeasonProps,
     { rejectValue: string }
 >(
@@ -118,7 +118,7 @@ export const getOneSeriesDetails = createAsyncThunk<
                 `${post_api}/tv/${id}/season/${season_number}?language=en-US&${api_key}`
             );
             console.log(response);
-            return response.data as ISeriesDetails;
+            return response.data as ISeasonDesc;
         } catch (error) {
             return rejectWithValue("Failed to load series");
         }
