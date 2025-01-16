@@ -120,7 +120,7 @@ export const getOneSeriesDetails = createAsyncThunk<
             console.log(response);
             return response.data as ISeriesDetails;
         } catch (error) {
-            return rejectWithValue("Не удалось загрузить данные");
+            return rejectWithValue("Failed to load series");
         }
     }
 );

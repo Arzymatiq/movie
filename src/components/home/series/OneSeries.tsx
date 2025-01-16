@@ -26,8 +26,7 @@ const OneSeries: React.FC = () => {
     console.log(oneSeries);
 
     const checkSeasonNumber = (season: any) => {
-        console.log();
-
+        console.log(oneSeries?.created_by.name);
         if (season?.name.toLowerCase().split(" ").includes("season")) {
             return <h4>{season.name}</h4>;
         } else {
@@ -133,7 +132,7 @@ const OneSeries: React.FC = () => {
                                             readOnly
                                         />
                                         <br />
-                                        <p>{`created by ${oneSeries?.created_by?.name}`}</p>
+                                        <p>{`created by ${oneSeries?.created_by?.original_name}`}</p>
                                     </div>
                                 </div>
                             </div>

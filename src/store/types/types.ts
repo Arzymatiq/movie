@@ -54,18 +54,18 @@ export interface IMovie {
     vote_count: number;
 }
 interface created_by_Obj {
-    credit_id?: string;
-    gender?: number;
-    id?: number;
-    name?: string;
-    original_name?: string;
-    profile_path?: string;
+    credit_id: string;
+    gender: number;
+    id: number;
+    name: string;
+    original_name: string;
+    profile_path: string;
 }
 
 export interface ISeries {
     adult: boolean;
     backdrop_path: string;
-    created_by?: created_by_Obj;
+    created_by: created_by_Obj;
     episode_run_time?: number[];
     genres?: any[];
     homepage?: string;
