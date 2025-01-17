@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../store/store";
 import { getOneSeries } from "../../../store/posts/postAction";
-import styled from "../style/OneSeries.module.scss";
+import styles from "../style/OneSeries.module.scss";
 import style from "../style/OnePost.module.scss";
 import { clearPost } from "../../../store/posts/postSlice";
 import { Rating, Skeleton } from "@mui/material";
@@ -14,6 +14,7 @@ const OneSeries: React.FC = () => {
         (state) => state.posts
     );
     const navigate = useNavigate();
+
     useEffect(() => {
         if (id) {
             dispatch(getOneSeries(id));
@@ -45,14 +46,12 @@ const OneSeries: React.FC = () => {
                             className={style.backdrop}
                             variant="rectangular"
                         />
-
                         <div className={style.main_info}>
                             <div className={style.main_info_center}>
                                 <Skeleton
                                     className={style.poster_skeleton}
                                     variant="rectangular"
                                 />
-
                                 <div className={style.textbox}>
                                     <Skeleton
                                         className={style.skeleton}
@@ -80,7 +79,13 @@ const OneSeries: React.FC = () => {
                     </div>
                 </div>
             ) : error ? (
-                <div>Error: {error}</div>
+                <div>
+                    <h2>Something went wrong</h2>
+                    <div>
+                        No series found. Please check back later or try
+                        searching for another series.
+                    </div>
+                </div>
             ) : !oneSeries ? (
                 <div>No series found</div>
             ) : (
@@ -101,8 +106,7 @@ const OneSeries: React.FC = () => {
                                     />
                                     <div className={style.textbox}>
                                         <h2>
-                                            {`${oneSeries.name}
-                                            (${oneSeries?.first_air_date})`}
+                                            {`${oneSeries.name} (${oneSeries?.first_air_date})`}
                                         </h2>
                                         <p>{oneSeries.original_name}</p>
                                         <br />
@@ -111,9 +115,7 @@ const OneSeries: React.FC = () => {
                                         <p>
                                             Grade count: {oneSeries.vote_count}
                                         </p>
-
                                         <p>Rating: {oneSeries.vote_average}</p>
-
                                         <Rating
                                             name="half-rating-read"
                                             value={oneSeries.vote_average / 2}
@@ -130,84 +132,79 @@ const OneSeries: React.FC = () => {
                                         />
                                         <br />
                                         <p>
-                                            {`create by ${oneSeries.created_by
-                                                .map((item) => {
-                                                    return `${item?.name} (${item?.original_name})`;
-                                                })
-                                                .join(", ")}`}{" "}
+                                            {oneSeries?.created_by
+                                                .map((item) =>
+                                                    item.name ? (
+                                                        <span key={item.id}>
+                                                            {`create by ${item?.name} (${item?.original_name})`}
+                                                        </span>
+                                                    ) : null
+                                                )
+                                                .reduce(
+                                                    (prev, curr) => prev,
+                                                    ", "
+                                                )}
                                         </p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div className={styled.network}>
+                    <div className={styles.network}>
                         <h2>Networks</h2>
-                        <div className={styled.networks}>
-                            {oneSeries?.networks?.map((network) => {
-                                return (
-                                    <div
-                                        className={styled.networks}
-                                        key={network.id}>
-                                        <img
-                                            className={styled.networks_logo}
-                                            src={`https://image.tmdb.org/t/p/original${network.logo_path}`}
-                                            alt={network.name}
-                                        />
-                                    </div>
-                                );
-                            })}
+                        <div className={styles.networks}>
+                            {oneSeries?.networks?.map((network) => (
+                                <div
+                                    className={styles.networks}
+                                    key={network.id}>
+                                    <img
+                                        className={styles.networks_logo}
+                                        src={`https://image.tmdb.org/t/p/original${network.logo_path}`}
+                                        alt={network.name}
+                                    />
+                                </div>
+                            ))}
                         </div>
                     </div>
-                    <div className={styled.seasons}>
+                    <div className={styles.seasons}>
                         <h2>Seasons</h2>
-                        <div className={styled.seasons_list}>
-                            <div className={styled.seasons_list_center}>
-                                {oneSeries?.seasons?.map((season) => {
-                                    return (
-                                        <div
-                                            className={styled.seasons_item}
-                                            key={season.id}
-                                            onClick={() =>
-                                                navigate(
-                                                    `${season.season_number}`
-                                                )
-                                            }>
-                                            <img
-                                                className={
-                                                    styled.seasons_poster
-                                                }
-                                                src={`https://image.tmdb.org/t/p/original${season.poster_path}`}
-                                                alt={season.name}
-                                            />
-                                            <div
-                                                className={styled.seasons_info}>
-                                                {checkSeasonNumber(season)}
-                                                <p>
-                                                    {season.overview.length >
-                                                    30 ? (
-                                                        <>
-                                                            {season?.overview.slice(
-                                                                0,
-                                                                30
-                                                            )}
-                                                            ...
-                                                        </>
-                                                    ) : (
-                                                        season.overview
-                                                    )}
-                                                </p>
-                                                <p>
-                                                    Air date: {season.air_date}
-                                                </p>
-                                                <p>
-                                                    Episode count:{" "}
-                                                    {season.episode_count}
-                                                </p>
-                                            </div>
+                        <div className={styles.seasons_list}>
+                            <div className={styles.seasons_list_center}>
+                                {oneSeries?.seasons?.map((season) => (
+                                    <div
+                                        className={styles.seasons_item}
+                                        key={season.id}
+                                        onClick={() =>
+                                            navigate(`${season.season_number}`)
+                                        }>
+                                        <img
+                                            className={styles.seasons_poster}
+                                            src={`https://image.tmdb.org/t/p/original${season.poster_path}`}
+                                            alt={season.name}
+                                        />
+                                        <div className={styles.seasons_info}>
+                                            {checkSeasonNumber(season)}
+                                            <p>
+                                                {season.overview.length > 30 ? (
+                                                    <>
+                                                        {season?.overview.slice(
+                                                            0,
+                                                            30
+                                                        )}
+                                                        ...
+                                                    </>
+                                                ) : (
+                                                    season.overview
+                                                )}
+                                            </p>
+                                            <p>Air date: {season.air_date}</p>
+                                            <p>
+                                                Episode count:{" "}
+                                                {season.episode_count}
+                                            </p>
                                         </div>
-                                    );
-                                })}
+                                    </div>
+                                ))}
                             </div>
                         </div>
                     </div>

@@ -31,10 +31,14 @@ const OneMovie: React.FC = () => {
         return `${hours} h ${mins} m`;
     };
 
-    const renderImage = (path: string | null, alt: string) => {
+    const renderImage = (
+        path: string | null,
+        alt: string,
+        className: string = style.backdrop // Default class is `backdrop`
+    ) => {
         return path ? (
             <img
-                className={style.backdrop}
+                className={className}
                 src={`https://image.tmdb.org/t/p/w500/${path}`}
                 alt={alt}
             />
@@ -64,7 +68,8 @@ const OneMovie: React.FC = () => {
                                 oneMovie.belongs_to_collection?.poster_path ||
                                     oneMovie.poster_path,
                                 oneMovie.belongs_to_collection?.name ||
-                                    oneMovie.title
+                                    oneMovie.title,
+                                style.poster // Pass the `poster` class here
                             )}
                             <div className={style.textbox}>
                                 <h2>{oneMovie.title}</h2>
@@ -96,7 +101,7 @@ const OneMovie: React.FC = () => {
                     </div>
                 </div>
             </div>
-
+            <h3 className={styled.actors}>Actors</h3>
             <Box
                 width={"100%"}
                 sx={{
@@ -141,7 +146,6 @@ const OneMovie: React.FC = () => {
                     </Card>
                 ))}
             </Box>
-
             {oneMovie?.production_companies &&
                 oneMovie?.production_companies?.length > 0 && (
                     <div className={styled.prodaction_companies}>
