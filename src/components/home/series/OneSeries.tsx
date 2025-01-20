@@ -6,6 +6,7 @@ import styles from "../style/OneSeries.module.scss";
 import style from "../style/OnePost.module.scss";
 import { clearPost } from "../../../store/posts/postSlice";
 import { Rating, Skeleton } from "@mui/material";
+import { MaxLength } from "../../../helpers/function";
 
 const OneSeries: React.FC = () => {
     const { id } = useParams<{ id: string }>();
@@ -185,17 +186,7 @@ const OneSeries: React.FC = () => {
                                         <div className={styles.seasons_info}>
                                             {checkSeasonNumber(season)}
                                             <p>
-                                                {season.overview.length > 30 ? (
-                                                    <>
-                                                        {season?.overview.slice(
-                                                            0,
-                                                            30
-                                                        )}
-                                                        ...
-                                                    </>
-                                                ) : (
-                                                    season.overview
-                                                )}
+                                                {MaxLength(season.overview, 30)}
                                             </p>
                                             <p>Air date: {season.air_date}</p>
                                             <p>

@@ -5,13 +5,13 @@ import { useAppSelector } from "../../../store/store";
 import style from "../style/post.module.scss";
 
 interface PostListProps<T> {
-    items: T[]; // Generic массив объектов
+    items: T[];
     renderItem: (
         item: T,
         onHover: (id: number | null) => void
-    ) => React.ReactNode; // Функция рендера
-    toNav: string; // Навигационный путь
-    total: number; // Всего элементов
+    ) => React.ReactNode;
+    toNav: string;
+    total: number;
 }
 
 const PostList = <T extends { id: number }>({

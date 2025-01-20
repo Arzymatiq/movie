@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../../store/store";
 import { getOneSeriesDetails } from "../../../../store/posts/postAction";
 import { clearPost } from "../../../../store/posts/postSlice";
-import StarList from "./StarList";
+import StarItem from "./StarItem";
 import style from "../../style/seriesDetails.module.scss";
 
 const SeriesDetails = () => {
@@ -16,7 +16,11 @@ const SeriesDetails = () => {
     const { oneSeriesDetails, loading, error } = useAppSelector(
         (state) => state.posts
     );
-    const [close, setClose] = useState(false);
+
+    const [openEpisodes, setOpenEpisodes] = useState<Record<number, boolean>>(
+        {}
+    );
+
     const formatRuntime = (minutes: number) => {
         const hours = Math.floor(minutes / 60);
         const mins = minutes % 60;
@@ -45,12 +49,19 @@ const SeriesDetails = () => {
         }
     };
 
+    const toggleEpisode = (episodeId: number) => {
+        setOpenEpisodes((prev) => ({
+            ...prev,
+            [episodeId]: !prev[episodeId],
+        }));
+    };
+
     const episodesList = useMemo(() => {
         return oneSeriesDetails?.episodes.map((item) => (
             <li
                 key={item.id}
                 className={`${style.episodes_item} ${
-                    close ? style.expanded : ""
+                    openEpisodes[item.id] ? style.expanded : ""
                 }`}>
                 <div className={style.episodes_item_main}>
                     <img
@@ -70,12 +81,14 @@ const SeriesDetails = () => {
                     </div>
                 </div>
                 <div className={style.people}>
-                    <h3 onClick={() => setClose(!close)}>Stars</h3>
-                    {close && <StarList stars={item.guest_stars} />}
+                    <h3 onClick={() => toggleEpisode(item.id)}>Stars</h3>
+                    {openEpisodes[item.id] && (
+                        <StarItem stars={item.guest_stars} />
+                    )}
                 </div>
             </li>
         ));
-    }, [oneSeriesDetails?.episodes, close]);
+    }, [oneSeriesDetails?.episodes, openEpisodes]);
 
     if (loading) return <p>Загрузка...</p>;
     if (error) return <p>Ошибка: {error}</p>;

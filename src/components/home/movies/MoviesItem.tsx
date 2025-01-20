@@ -1,6 +1,7 @@
 import React, { FC, useState } from "react";
 import { IMovie } from "../../../store/types/types";
 import style from "../style/moveItem.module.scss";
+import { MaxLength } from "../../../helpers/function";
 
 interface MoviesItemProps {
     post: IMovie;
@@ -33,13 +34,7 @@ const MoviesItem: FC<MoviesItemProps> = ({ post, onHover }) => {
                 <div className={style.main_info}>
                     {isHovered && (
                         <div className={style.hoverDetails}>
-                            <h2>
-                                {post.title.length > 10 ? (
-                                    <>{post?.title.slice(0, 10)}...</>
-                                ) : (
-                                    post.title
-                                )}
-                            </h2>
+                            <h2>{MaxLength(post.title, 10)}</h2>
                             <p>Rating: {post.vote_average}</p>
                         </div>
                     )}

@@ -7,6 +7,7 @@ import { clearPost } from "../../../store/posts/postSlice";
 import { Card, Box, Typography, Rating } from "@mui/material";
 import style from "../style/OnePost.module.scss";
 import styled from "../style/OneMovie.module.scss";
+import { MaxLength } from "../../../helpers/function";
 
 const OneMovie: React.FC = () => {
     const { id } = useParams<{ id: string }>();
@@ -69,14 +70,14 @@ const OneMovie: React.FC = () => {
                                     oneMovie.poster_path,
                                 oneMovie.belongs_to_collection?.name ||
                                     oneMovie.title,
-                                style.poster // Pass the `poster` class here
+                                style.poster
                             )}
                             <div className={style.textbox}>
                                 <h2>{oneMovie.title}</h2>
                                 {oneMovie.title !== oneMovie.original_title && (
                                     <p>{oneMovie.original_title}</p>
                                 )}
-                                <p>{oneMovie.overview}</p>
+                                <p>{MaxLength(oneMovie.overview, 300)}</p>
                                 <p>Grade count: {oneMovie.vote_count}</p>
                                 <p>Rating: {oneMovie.vote_average}</p>
                                 <Rating

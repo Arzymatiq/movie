@@ -6,7 +6,7 @@ import {
     RouterProvider,
 } from "react-router-dom";
 import Layout from "../components/layOut/Layout";
-import Error from "../components/error/Error";
+import Error from "../components/error/NotFoundPage";
 // import OneSeries from "../components/home/series/OneSeries";
 
 const MoviesList = lazy(() => import("../components/home/movies/MoviesList"));

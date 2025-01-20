@@ -65,3 +65,10 @@ export const updateToken = () => {
         }
     }, 1000 * 60 * 9);
 };
+
+export const MaxLength = (title: string, maxSymbols: number): string => {
+    if (title.length > maxSymbols) {
+        return `${title.slice(0, maxSymbols)}...`;
+    }
+    return title;
+};
