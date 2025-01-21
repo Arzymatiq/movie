@@ -13,7 +13,6 @@ import {
     getSeries,
 } from "./postAction";
 
-// Create entity adapters for movies, series, and actors
 const moviesAdapter = createEntityAdapter<IMovie>();
 const seriesAdapter = createEntityAdapter<ISeries>();
 const actorsAdapter = createEntityAdapter<IActors>();

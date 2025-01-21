@@ -3,6 +3,7 @@ import axios from "axios";
 import { post_api, api_key } from "../../helpers/consts";
 import { RootState } from "../store";
 import { ISeries, IMovie, IActors, ISeasonDesc } from "../types/types";
+import apiPost from "../../helpers/apiPost";
 interface GetParams {
     search?: string;
     currentPage?: number;
@@ -18,8 +19,8 @@ export const getOneMovie = createAsyncThunk<{ movie: IMovie }, string>(
     "products/getOneMovie",
     async (id: string, { rejectWithValue }) => {
         try {
-            const movieResponse = await axios.get(
-                `${post_api}/movie/${id}?language=en-US&${api_key}`
+            const movieResponse = await apiPost.get(
+                `/movie/${id}?language=en-US&${api_key}`
             );
 
             return {
@@ -36,8 +37,8 @@ export const getActors = createAsyncThunk<
     string
 >("products/getActors", async (id: string, { rejectWithValue }) => {
     try {
-        const actorResponse = await axios.get(
-            `${post_api}/movie/${id}/credits?language=en-US&${api_key}`
+        const actorResponse = await apiPost.get(
+            `/movie/${id}/credits?language=en-US&${api_key}`
         );
 
         return {
@@ -58,8 +59,8 @@ export const getMovie = createAsyncThunk<
         const page = currentPage && currentPage > 500 ? 500 : currentPage;
         const paginationParams = `page=${page}`;
         try {
-            const response = await axios.get(
-                `${post_api}/discover/movie?${paginationParams}&${api_key}`
+            const response = await apiPost.get(
+                `/discover/movie?${paginationParams}&${api_key}`
             );
             return {
                 results: response.data.results,
@@ -83,8 +84,8 @@ export const getSeries = createAsyncThunk<
 >("products/getSeries", async ({ currentPage }: GetParams) => {
     const page = currentPage && currentPage > 500 ? 500 : currentPage;
     const paginationParams = `page=${page}`;
-    const response = await axios.get(
-        `${post_api}/discover/tv?${paginationParams}&${api_key}`
+    const response = await apiPost.get(
+        `/discover/tv?${paginationParams}&${api_key}`
     );
     return {
         results: response.data.results,

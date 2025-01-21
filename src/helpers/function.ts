@@ -1,7 +1,7 @@
 import axios from "axios";
 import { ACCOUNT_API } from "./consts";
 import { Tokens } from "../store/types/types";
-import apiClient from "./apiClients";
+import apiPost from "./apiPost";
 
 export const addDataToLocalStorage = (datatoStorage: {
     user: any;
@@ -30,7 +30,7 @@ export const refreshAccessToken = async () => {
 
         localStorage.setItem("tokens", JSON.stringify(newTokens));
 
-        apiClient.defaults.headers.common[
+        apiPost.defaults.headers.common[
             "Authorization"
         ] = `Bearer ${res.data.access}`;
 
