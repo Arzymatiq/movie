@@ -17,15 +17,18 @@ const MoviesList: FC = () => {
     const [currentPage, setCurrentPage] = useState(
         Number(searchParams.get("page")) || 1
     );
+    const language = localStorage.getItem("language") || "en-US";
+    console.log(language);
+
     const { state } = useParams<{ state: string }>();
 
     useEffect(() => {
         if (state === "series") {
-            dispatch(getSeries({ currentPage }));
+            dispatch(getSeries({ currentPage, language }));
         } else {
-            dispatch(getMovie({ currentPage }));
+            dispatch(getMovie({ currentPage, language }));
         }
-    }, [dispatch, currentPage, state]);
+    }, [dispatch, currentPage, state, language]);
 
     const handlePageChange = (page: number) => {
         if (page !== currentPage) {
@@ -45,7 +48,7 @@ const MoviesList: FC = () => {
                             series.entities
                                 ? Object.values(series.entities)
                                 : []
-                        } // Convert entities to an array
+                        }
                         renderItem={(post, onHover) => (
                             <SeriesItem
                                 post={post}

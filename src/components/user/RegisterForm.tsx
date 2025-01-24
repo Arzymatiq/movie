@@ -4,6 +4,7 @@ import { registerFunc } from "../../store/user/userAction";
 import { useAppDispatch } from "../../store/store";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 
 const RegisterForm = () => {
     const {
@@ -14,6 +15,7 @@ const RegisterForm = () => {
 
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
+    const { t } = useTranslation();
 
     const onSubmit = async (data: any) => {
         try {
@@ -33,40 +35,61 @@ const RegisterForm = () => {
         <div className={style.authInput}>
             <div className={style.authInputCenter}>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <h2>Регистрация</h2>
+                    <h2>{t("regbutton")}</h2>
                     <label htmlFor="">
                         <input
                             type="text"
-                            {...register("fullName", {
-                                required: true,
-                                maxLength: 20,
-                                minLength: 4,
+                            placeholder="fullname"
+                            {...register("fullname", {
+                                required: t("required"),
+                                maxLength: {
+                                    value: 20,
+                                    message: t("message"),
+                                },
+                                minLength: {
+                                    value: 4,
+                                    message: t("message1"),
+                                },
                             })}
                         />
                     </label>
                     <label htmlFor="">
                         <input
                             type="text"
+                            placeholder="login"
                             {...register("login", {
-                                required: true,
-                                maxLength: 20,
-                                minLength: 4,
+                                required: t("required"),
+                                maxLength: {
+                                    value: 20,
+                                    message: t("message"),
+                                },
+                                minLength: {
+                                    value: 4,
+                                    message: t("message1"),
+                                },
                             })}
                         />
                     </label>
                     <label htmlFor="">
                         <input
                             type="password"
+                            placeholder="password"
                             {...register("password", {
-                                required: true,
-                                maxLength: 20,
-                                minLength: 4,
+                                required: t("required"),
+                                maxLength: {
+                                    value: 20,
+                                    message: t("message"),
+                                },
+                                minLength: {
+                                    value: 4,
+                                    message: t("message1"),
+                                },
                             })}
                         />
                     </label>
 
                     <button type="submit" className={style.submitButton}>
-                        Зарегистрироваться
+                        {t("regbutton")}
                     </button>
                 </form>
             </div>

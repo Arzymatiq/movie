@@ -2,6 +2,9 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import style from "./logForm.module.scss";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { loginFunc } from "../../store/user/userAction";
+import { useAppDispatch } from "../../store/store";
 
 const LoginForm = () => {
     const navigate = useNavigate();
@@ -10,28 +13,45 @@ const LoginForm = () => {
         handleSubmit,
         formState: { errors },
     } = useForm({ mode: "onBlur", reValidateMode: "onChange" });
+    const { t } = useTranslation<"translation">();
+    const dispatch = useAppDispatch();
 
-    const onSubmit = (data: any) => {
+    const onSubmit = async (data: any) => {
         alert(JSON.stringify(data));
+
+        try {
+            const action = await dispatch(loginFunc(data));
+            if (loginFunc.fulfilled.match(action)) {
+                navigate("/");
+                window.location.reload();
+            } else {
+                alert(action.payload || "Ошибка входа.");
+                data.login.setValue("");
+                data.passWord.setValue("");
+            }
+        } catch (err) {
+            console.error("Ошибка логина:", err);
+        }
     };
 
     return (
         <div className={style.authInput}>
             <div className={style.authInputCenter}>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <h2>Вход</h2>
+                    <h2>{t("login")}</h2>
                     <label htmlFor="">
                         <input
+                            placeholder="login"
                             type="text"
                             {...register("login", {
-                                required: "это поле обязательно к заполнению",
+                                required: t("required"),
                                 maxLength: {
                                     value: 20,
-                                    message: "максимальная длина 20 символов",
+                                    message: t("message"),
                                 },
                                 minLength: {
                                     value: 4,
-                                    message: "минимальная длина 4 символа",
+                                    message: t("message1"),
                                 },
                             })}
                         />
@@ -44,15 +64,16 @@ const LoginForm = () => {
                     <label htmlFor="">
                         <input
                             type="password"
+                            placeholder="password"
                             {...register("password", {
-                                required: "это поле обязательно к заполнению",
+                                required: t("required"),
                                 maxLength: {
                                     value: 20,
-                                    message: "максимальная длина 20 символов",
+                                    message: t("message"),
                                 },
                                 minLength: {
                                     value: 4,
-                                    message: "минимальная длина 4 символа",
+                                    message: t("message1"),
                                 },
                             })}
                         />
@@ -66,7 +87,7 @@ const LoginForm = () => {
                         <input
                             type="checkbox"
                             {...register("isAgreeToManagmentData", {
-                                required: "вы должны согласиться с условиями",
+                                required: t("requiredcheckbox"),
                             })}
                         />
                         <div className={style.errorText}>
@@ -86,7 +107,7 @@ const LoginForm = () => {
                         onClick={() => {
                             navigate("/register");
                         }}>
-                        Зарегистрироваться
+                        {t("register")}
                     </p>
                 </form>
             </div>

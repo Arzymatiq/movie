@@ -1,0 +1,12 @@
+{
+    "navbar": {
+        "movie": "Movie",
+        "series": "Series",
+        "account": "Account",
+        "guest": "Guest",
+        "noLogin": "No login",
+        "logout": "Logout",
+        "register": "Register",
+        "login": "Login"
+    }
+}

@@ -16,15 +16,18 @@ const OneMovie: React.FC = () => {
         (state) => state.posts
     );
 
+    const language = localStorage.getItem("language") || "en-US";
+    console.log(language);
+
     useEffect(() => {
         if (id) {
-            dispatch(getOneMovie(id));
-            dispatch(getActors(id));
+            dispatch(getOneMovie({ id, language }));
+            dispatch(getActors({ id, language }));
         }
         return () => {
             dispatch(clearPost());
         };
-    }, [dispatch, id]);
+    }, [dispatch, id, language]);
 
     const formatRuntime = (minutes: number) => {
         const hours = Math.floor(minutes / 60);
@@ -35,13 +38,12 @@ const OneMovie: React.FC = () => {
     const renderImage = (
         path: string | null,
         alt: string,
-        className: string = style.backdrop // Default class is `backdrop`
+        className: string = style.backdrop
     ) => {
         return path ? (
             <img
                 className={className}
                 src={`https://image.tmdb.org/t/p/w500/${path}`}
-                alt={alt}
             />
         ) : null;
     };

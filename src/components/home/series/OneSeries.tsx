@@ -16,17 +16,23 @@ const OneSeries: React.FC = () => {
     );
     const navigate = useNavigate();
 
+    const language = localStorage.getItem("language") || "en-US";
+    console.log(language);
+
     useEffect(() => {
         if (id) {
-            dispatch(getOneSeries(id));
+            dispatch(getOneSeries({ id, language }));
             return () => {
                 dispatch(clearPost());
             };
         }
-    }, [dispatch, id]);
+    }, [dispatch, id, language]);
 
     const checkSeasonNumber = (season: any) => {
-        if (season?.name.toLowerCase().split(" ").includes("season")) {
+        if (
+            season?.name.toLowerCase().split(" ").includes("season") ||
+            season?.name.toLowerCase().split(" ").includes("сезон")
+        ) {
             return <h4>{season.name}</h4>;
         } else {
             return (
