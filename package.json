@@ -28,13 +28,23 @@
     "typescript": "^5.7.3",
     "web-vitals": "^2.1.4"
   },
+  "devDependencies": {
+    "gh-pages": "^5.0.0"
+  },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "vercel-build": "npm install --legacy-peer-deps && npm run build",
     "eject": "react-scripts eject"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Arzymatiq/movie"
+  },
+  "homepage": "https://arzymatiq.github.io/movie",
   "eslintConfig": {
     "extends": [
       "react-app",
