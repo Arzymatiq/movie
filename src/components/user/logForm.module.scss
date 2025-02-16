@@ -1,55 +1,30 @@
 .authInput {
-    display: flex;
-    height: 100vh;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-    .authInputCenter {
-        background-color: white;
-        width: 600px;
-        height: 500px;
-        display: flex;
-        border: 1px solid black;
-        border-radius: 5px;
-        justify-content: center;
-        align-items: center;
-        background-color: rgba(255, 255, 255, 0.3);
-        form {
-            height: 80%;
-            display: flex;
-            flex-direction: column;
-            width: 80%;
-            justify-content: space-between;
-            .checkboxWrapper {
-                position: relative;
-                display: flex;
-                justify-content: start;
-            }
-            input {
-                display: flex;
-                border: none;
-                width: 100%;
-                height: 45px;
-                border-radius: 10px;
-            }
-            .errorText {
-                height: 30px;
-                p {
-                    color: red;
-                    font-size: 14px;
-                }
-            }
-            button {
-                width: 200px;
-                height: 45px;
-                border-radius: 10px;
-                border: 1px solid black;
-            }
-            .register {
-                font-size: 14px;
-                text-decoration: underline;
-                cursor: pointer;
-            }
-        }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: var(--auth-input-background-color, #f0f0f0);
+
+  .authInputCenter {
+    width: 40%;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: var(--auth-input-center-background-color, #ffffff);
+
+    h2 {
+      text-align: center;
+      color: var(--auth-input-h2-color, #333);
     }
+
+    .register {
+      text-align: center;
+      color: var(--auth-input-register-color, #1890ff);
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
 }

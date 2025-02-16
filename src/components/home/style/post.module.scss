@@ -74,6 +74,7 @@
     .postItem {
       position: relative;
       display: flex;
+      flex-direction: column;
       justify-content: center;
 
       img {
@@ -89,7 +90,6 @@
           max-width: 150px;
         }
       }
-
       &::after {
         content: "";
         position: absolute;
@@ -139,7 +139,8 @@
     }
 
     .postItem:hover .hoverText {
-      display: block;
+      display: flex;
+      flex-direction: column;
     }
   }
 }
