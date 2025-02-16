@@ -1,54 +1,117 @@
 .navBar {
-    height: 100px;
-    width: 100%;
+  height: 100px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: var(--navbar-background-color);
+  margin-bottom: 50px;
+
+  .navBar_center {
+    width: 80%;
     display: flex;
-    justify-content: center;
-    .navBar_center {
-        width: 80%;
-        display: flex;
-        justify-content: space-between;
-        align-self: center;
-        .navBar_items {
-            width: 30%;
-            display: flex;
-            justify-content: space-between;
-        }
-        button {
-            width: 105px;
-            height: 35px;
-            background: none;
-            font-size: 1.2rem;
-            border: none;
-            color: rgba(250, 250, 250, 0.5);
-            &:hover {
-                color: white;
-                cursor: pointer;
-            }
-        }
-        .login {
-            display: flex;
-            width: 20%;
-            button {
-                display: flex;
-                justify-content: space-around;
-                align-items: center;
-            }
-            button {
-                color: white;
-            }
-            img {
-                width: 30px;
-                height: 30px;
-                filter: invert(100%);
-            }
-            .dropdownMenu {
-                z-index: 1;
-                top: 70px;
-                display: flex;
-                flex-direction: column;
-                position: absolute;
-                margin: 0;
-            }
-        }
+    justify-content: space-between;
+    align-self: center;
+
+    @media (max-width: 768px) {
+      width: 100%;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
     }
+
+    .navBar_items {
+      width: 30%;
+      display: flex;
+      justify-content: space-between;
+
+      @media (max-width: 768px) {
+        display: none;
+      }
+    }
+
+    button {
+      width: 105px;
+      height: 35px;
+      background: none;
+      font-size: 1.2rem;
+      border: none;
+      color: var(--navbar-button-color);
+
+      &:hover {
+        color: var(--navbar-button-hover-color);
+        background-color: var(--navbar-button-hover-bg);
+        cursor: pointer;
+      }
+
+      @media (max-width: 768px) {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+    }
+
+    .login {
+      display: flex;
+      width: 20%;
+
+      @media (max-width: 768px) {
+        width: 100%;
+        justify-content: center;
+      }
+
+      button {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+      }
+
+      button {
+        color: var(--navbar-button-color);
+      }
+
+      img {
+        width: 30px;
+        height: 30px;
+        filter: invert(100%);
+      }
+
+      .dropdownMenu {
+        z-index: 1;
+        top: 70px;
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        margin: 0;
+      }
+    }
+
+    .burgerMenu {
+      display: none;
+
+      @media (max-width: 768px) {
+        display: block;
+        color: var(--navbar-button-color);
+        background: none;
+        border: none;
+      }
+    }
+  }
+
+  .themeButtons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+
+    button {
+      width: 100%;
+      background: none;
+      border: 1px solid var(--navbar-button-hover-color);
+      color: var(--navbar-button-color);
+
+      &:hover {
+        background: var(--navbar-button-hover-bg);
+        color: var(--navbar-button-hover-color);
+      }
+    }
+  }
 }

@@ -1,22 +1,86 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Montserrat:wght@200&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
 
 body {
-    background-color: #100e19;
-    color: white;
+  background-color: var(--movie-background-color);
+  color: var(--pagination-item-color);
+  /* color: white; */
 }
 * {
-    margin: 0;
-    padding: 0;
-    font-family: "Noto Sans", sans-serif;
+  margin: 0;
+  padding: 0;
+  font-family: "Noto Sans", sans-serif;
 }
 ul {
-    list-style-type: none;
+  list-style-type: none;
 }
 input {
-    display: flex;
-    align-items: center;
-    border: none;
-    height: 25px;
-    border-radius: 15px;
-    padding-left: 20px;
+  display: flex;
+  align-items: center;
+  border: none;
+  height: 25px;
+  border-radius: 15px;
+  padding-left: 20px;
+}
+
+html[data-theme="dark"] {
+  --navbar-background-color: #333;
+  --movie-background-color: #100e19;
+  --navbar-button-color: rgba(250, 250, 250, 0.5);
+  --navbar-button-hover-color: #ccc;
+  --navbar-button-hover-bg: #444;
+  --pagination-item-color: white;
+  --pagination-item-border-color: white;
+  --pagination-item-selected-bg: white;
+  --pagination-item-selected-color: black;
+  --pagination-item-hover-bg: rgba(255, 255, 255, 0.569);
+  --pagination-item-hover-color: rgb(0, 0, 0);
+  --company-item-background-color: 255, 255, 255;
+  --company-item-text-color: black;
+
+  --episode-item-background-color: rgba(255, 255, 255, 0.2);
+
+  --post-list-imgage: rgba(0, 0, 0, 0.7);
+  --post-bgc-opacity: 0.5;
+}
+
+html[data-theme="light"] {
+  --navbar-background-color: #fff;
+  --movie-background-color: #ffffff;
+  --navbar-button-color: rgba(0, 0, 0, 0.5);
+  --navbar-button-hover-color: #333;
+  --navbar-button-hover-bg: #ddd;
+  --pagination-item-color: black;
+  --pagination-item-border-color: black;
+  --pagination-item-selected-bg: black;
+  --pagination-item-selected-color: white;
+  --pagination-item-hover-bg: black;
+  --pagination-item-hover-color: black;
+  --company-item-background-color: 255, 255, 255;
+  --company-item-text-color: black;
+
+  --episode-item-background-color: rgba(42, 42, 42, 0.208);
+
+  --post-list-imgage: rgba(0, 0, 0, 0.7);
+  --post-bgc-opacity: 0.7;
+}
+
+html[data-theme="green"] {
+  --navbar-background-color: #282c34;
+  --movie-background-color: #1e1e1e;
+  --navbar-button-color: #61dafb;
+  --navbar-button-hover-color: #21a1f1;
+  --navbar-button-hover-bg: #282c34;
+  --pagination-item-color: #61dafb;
+  --pagination-item-border-color: #61dafb;
+  --pagination-item-selected-bg: #21a1f1;
+  --pagination-item-selected-color: #282c34;
+  --pagination-item-hover-bg: #21a1f1;
+  --pagination-item-hover-color: #282c34;
+  --company-item-background-color: 40, 44, 52;
+  --company-item-text-color: #61dafb;
+
+  --episode-item-background-color: rgba(40, 44, 52, 0.817);
+
+  --post-list-imgage: rgb(0, 0, 0);
+  --post-bgc-opacity: 1;
 }
